@@ -33,9 +33,9 @@ public class Utilisateur {
 	 
 	 //
 	 
-	 private List<Article>articlevendu;
+	 private List<Article>articlesvendu; //relation
 	 
-	 private List<Article>articleachete;
+	 private List<Article>articlesachete;
 	 
 	 
 	 //constructeur
