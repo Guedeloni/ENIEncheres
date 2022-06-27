@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,14 +34,15 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-	
+
 			<!-- liens connexion -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">S'inscrire</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Se
-							connecter</a></li>
+						aria-current="page" href="<c:url value="/login" />">S'inscrire</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value="/login" />">Se connecter</a></li>
 				</ul>
 			</div>
 		</div>
