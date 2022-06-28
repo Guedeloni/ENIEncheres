@@ -48,17 +48,17 @@ public class login extends HttpServlet {
 					} else {
 					//System.out.println("oui");
 					request.getSession().setAttribute("utilisateur", utilisateur);
-					response.sendRedirect("");
+					response.sendRedirect("/user-connected");
 
 					}
 				}
 
 					
-					if(choixUtilisateur.equals("creer")) {
-						response.sendRedirect("pageInscription");
+					if(choixUtilisateur.equals("creer un compte")) {
+						response.sendRedirect("/inscription");
 					}
 
 				}
 	}
 
-}
+
