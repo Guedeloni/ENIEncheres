@@ -49,12 +49,11 @@ public class LoginServlet extends HttpServlet {
 					Utilisateur utilisateur = new Utilisateur();
 					try {
 						utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
-//						System.out.println(utilisateur.toString());
 					} catch (BLLException e) {
 						
 						e.printStackTrace();
 					}
-					if (utilisateur.equals(null)){
+					if (utilisateur == null){
 						System.out.println("non");
 						String message = "vous n'êtes pas inscrits";
 						request.setAttribute("message", message);

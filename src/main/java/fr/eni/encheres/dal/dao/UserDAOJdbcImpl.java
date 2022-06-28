@@ -11,23 +11,23 @@ import fr.eni.encheres.dal.DALException;
 
 public class UserDAOJdbcImpl {
 
-private static final String SELECT_USER_BY_PSEUDO = "SELECT no_utilisateur, pseudo, nom, prenom,\r\n"
+private static final String SELECT_USER_BY_PSEUDO_MDP = "SELECT no_utilisateur, pseudo, nom, prenom,\r\n"
 													+ "		email, telephone, rue, code_postal, ville,\r\n"
 													+ "		mot_de_passe, credit, administrateur\r\n"
 													+ "		FROM utilisateurs\r\n"
-													+ "		WHERE pseudo = ?";
+													+ "		WHERE pseudo = ? AND mot_de_passe = ?";
 
 private ConnectionProvider provider;
 	
 	public UserDAOJdbcImpl() {
-//		provider = new ConnectionProvider();
 	}
 
-	public Utilisateur selectUserByPseudo(String pseudo) throws DALException {
+	public Utilisateur selectUserByPseudoMdP(String pseudo, String MdP) throws DALException {
 		Utilisateur userTrouve = new Utilisateur();
 		try (Connection cnx = createConnexion();){
-			PreparedStatement ordreSelect = cnx.prepareStatement(SELECT_USER_BY_PSEUDO);
+			PreparedStatement ordreSelect = cnx.prepareStatement(SELECT_USER_BY_PSEUDO_MDP);
 			ordreSelect.setString(1, pseudo);
+			ordreSelect.setString(2, MdP);
 			ResultSet ligneResultante = ordreSelect.executeQuery();
 			if (!ligneResultante.next()) {
 				System.out.println("DAO : user non trouvé");
