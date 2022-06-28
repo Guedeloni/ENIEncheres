@@ -26,7 +26,8 @@
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 			<!-- Logo -->
-			<a class="navbar-brand" href="<c:url value="/encheres" />"> Eni-Enchères</a>
+			<a class="navbar-brand" href="<c:url value="/encheres" />">
+				Eni-Enchères</a>
 		</div>
 	</nav>
 
@@ -73,13 +74,11 @@
 							name="rue">
 					</div>
 
-
-
 				</div>
 
 				<div class="mt-3">
 					<div class="form-group mt-3">
-						<label for="code_postal">Code postal</label> <input type="number"
+						<label for="code_postal">Code postal</label> <input type="text"
 							class="form-control" id="code_postal" placeholder="44000"
 							name="code_postal">
 					</div>

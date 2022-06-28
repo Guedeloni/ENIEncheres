@@ -56,12 +56,16 @@ public class Inscription extends HttpServlet {
 		String email = request.getParameter("email");
 		String telephone = request.getParameter("telephone");
 		String rue = request.getParameter("rue");
-		String code_postal = request.getParameter("codepostal");
+		String code_postal = request.getParameter("code_postal");
 		String ville = request.getParameter("ville");
 		String mot_de_passe = request.getParameter("motDePasse");
 		String confirmationMdp = request.getParameter("confirmationMdp");
 		String choixUtilisateur = request.getParameter("choixUtilisateur");
 
+		// public Utilisateur(String pseudo, String nom, String prenom, String email,
+		// String telephone, String rue,
+		// int code_postal, String ville, String mot_de_passe, int credit, int
+		// administrateur) {
 		newUtilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,
 				credit, administrateur);
 
