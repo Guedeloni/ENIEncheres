@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class redirect
  */
 
-public class redirect extends HttpServlet {
+public class Redirect extends HttpServlet {
 	
 	private static final String PAGE_ACCUEIL_JSP = "/WEB-INF/jsp/accueil.jsp";
 	private static final long serialVersionUID = 1L;
