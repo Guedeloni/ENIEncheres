@@ -39,6 +39,8 @@ public class login extends HttpServlet {
 				String pseudoInput = request.getParameter("pseudoInput");
 				String mdpInput = request.getParameter("mdpInput");
 				String choixUtilisateur = request.getParameter("choixUtilisateur");
+				
+				System.out.println("connexion" + pseudoInput + mdpInput);
 
 				//System.out.println(choixUtilisateur);
 				if(choixUtilisateur.equals("connexion")) {
