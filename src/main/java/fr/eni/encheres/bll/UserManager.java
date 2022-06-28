@@ -2,6 +2,7 @@ package fr.eni.encheres.bll;
 
 import java.util.List;
 
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.dao.UserDAOJdbcImpl;
 
@@ -24,22 +25,25 @@ public class UserManager {
 	
 	/**
 	 * utilisateurReconnu(pseudo, MdP)
-	 * Renvoie 'true' si 'Pseudo' existe ds. la DB ET si 'MdP' correspond au mot de passe du pseudo trouve
+	 * Renvoie utilisateur si 'Pseudo' existe ds. la DB ET si 'MdP' correspond au mot de passe du pseudo trouve
+	 * Renvoi null sinon
 	 * @param pseudo
 	 * @param MdP
-	 * @return	Boolean
+	 * @return	Utilisateur
 	 * @throws BLLException
 	 */
-	public boolean utilisateurReconnu(String pseudo, String MdP) throws BLLException {
+	public Utilisateur utilisateurReconnu(String pseudo, String MdP) throws BLLException {
 		try {
-			Boolean utilisateurTrouve = false;
-			String MdPTrouve = dao.getPWByPseudo(pseudo);
-			if (MdPTrouve.equals(MdP)) utilisateurTrouve = true;
+			Utilisateur utilisateurTrouve = null;
+			if (dao.selectUserByPseudo(pseudo) != null) {
+				if (dao.selectUserByPseudo(pseudo).getMot_de_passe().equals(MdP))
+					utilisateurTrouve = dao.selectUserByPseudo(pseudo);
+			};
 			return utilisateurTrouve;
 		}
 		catch (DALException e) {
 			e.printStackTrace();
-			throw new BLLException("Problème à la récupération du mot de passe via pseudo", e);
+			throw new BLLException("Problème à la récupération de l'utilisateur via pseudo", e);
 		}
 	}
 }

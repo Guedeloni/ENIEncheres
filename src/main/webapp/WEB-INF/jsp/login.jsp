@@ -32,14 +32,14 @@
 	<div class="container-md">
 		<form>
 			<div class="form-group w-25">
-				<label for="exampleInputEmail1">Email address</label> <input
-					type="email" class="form-control" id="exampleInputEmail1"
+				<label for="Email">Email</label> <input type="email"
+					class="form-control" id="email" name="email"
 					aria-describedby="emailHelp" placeholder="Enter email">
 			</div>
 
 			<div class="form-group w-25 mt-3">
-				<label for="exampleInputPassword1">Password</label> <input
-					type="password" class="form-control" id="exampleInputPassword1"
+				<label for="password">Password</label> <input type="password"
+					class="form-control" id="mot_de_passe" name="mot_de_passe"
 					placeholder="Password">
 			</div>
 
@@ -64,8 +64,8 @@
 
 			<div>
 
-				<a class="btn btn-primary mt-3" href="<c:url value="/inscription" />">
-					Créer un compte </a>
+				<a class="btn btn-primary mt-3"
+					href="<c:url value="/inscription" />"> Créer un compte </a>
 			</div>
 		</form>
 	</div>
