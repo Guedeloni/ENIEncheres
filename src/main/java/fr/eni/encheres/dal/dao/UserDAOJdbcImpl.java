@@ -20,7 +20,7 @@ private static final String SELECT_USER_BY_PSEUDO = "SELECT no_utilisateur, pseu
 private ConnectionProvider provider;
 	
 	public UserDAOJdbcImpl() {
-		provider = new ConnectionProvider();
+//		provider = new ConnectionProvider();
 	}
 
 	public Utilisateur selectUserByPseudo(String pseudo) throws DALException {
@@ -29,8 +29,13 @@ private ConnectionProvider provider;
 			PreparedStatement ordreSelect = cnx.prepareStatement(SELECT_USER_BY_PSEUDO);
 			ordreSelect.setString(1, pseudo);
 			ResultSet ligneResultante = ordreSelect.executeQuery();
-			if (!ligneResultante.next()) userTrouve = null;
+			if (!ligneResultante.next()) {
+				System.out.println("DAO : user non trouvé");
+				userTrouve = null;
+			}
 			else {
+				System.out.println("DAO : user trouvé");
+				System.out.println(ligneResultante.getString(2) + " - " + ligneResultante.getString(9));
 				userTrouve = userBuilder(ligneResultante);
 			}
 		}
@@ -44,7 +49,7 @@ private ConnectionProvider provider;
 	// METHODES INTERNES
 	private Connection createConnexion() throws DALException {
 		try {
-			Connection cnx = provider.getConnexion();
+			Connection cnx = ConnectionProvider.getConnection();
 			return cnx;
 		}
 		catch (Exception e) {
@@ -53,15 +58,19 @@ private ConnectionProvider provider;
 		}
 	}
 
-	private Utilisateur userBuilder(ResultSet ligneResultante) {
-		Boolean admin = false;
-		if (ligneResultante.getByte(12) == 1) admin = true;
-		Utilisateur user = new Utilisateur(ligneResultante.getInt(1), ligneResultante.getString(2),
-				 						ligneResultante.getString(3), ligneResultante.getString(4),
-				 						ligneResultante.getString(5), ligneResultante.getString(6),
-				 						ligneResultante.getString(7), ligneResultante.getInt(8),
-				 						ligneResultante.getString(9), ligneResultante.getString(10),
-				 						ligneResultante.getInt(11), admin);
+	private Utilisateur userBuilder(ResultSet ligneResultante) throws DALException {
+		Utilisateur user = null;
+		try {
+			user = new Utilisateur(ligneResultante.getString(2),
+			 						ligneResultante.getString(3), ligneResultante.getString(4),
+			 						ligneResultante.getString(5), ligneResultante.getString(6),
+			 						ligneResultante.getString(7), ligneResultante.getInt(8),
+			 						ligneResultante.getString(9), ligneResultante.getString(10),
+			 						ligneResultante.getInt(11), ligneResultante.getInt(12));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Problème à la construction d'un utilisateur à partir du ResultSet", e);
+		}
 		return user;
 	}
 

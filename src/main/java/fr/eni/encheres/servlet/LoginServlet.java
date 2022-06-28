@@ -17,7 +17,7 @@ import fr.eni.encheres.bo.Utilisateur;
  * Servlet implementation class login
  */
 //@WebServlet(name = "login_page", urlPatterns = { "/login" })
-public class login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
@@ -38,7 +38,8 @@ public class login extends HttpServlet {
 		//recuperer les infos de connexion saisies par l'utilisateur
 				String pseudoInput = request.getParameter("pseudoInput");
 				String mdpInput = request.getParameter("mdpInput");
-				String choixUtilisateur = request.getParameter("choixUtilisateur");
+//				String choixUtilisateur = request.getParameter("choixUtilisateur");
+				String choixUtilisateur = "connexion";
 				
 				System.out.println("connexion" + pseudoInput + mdpInput);
 
@@ -48,20 +49,21 @@ public class login extends HttpServlet {
 					Utilisateur utilisateur = new Utilisateur();
 					try {
 						utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
+//						System.out.println(utilisateur.toString());
 					} catch (BLLException e) {
 						
 						e.printStackTrace();
 					}
-					if (utilisateur == null){
-						//System.out.println("non");
+					if (utilisateur.equals(null)){
+						System.out.println("non");
 						String message = "vous n'êtes pas inscrits";
 						request.setAttribute("message", message);
 						doGet(request, response);
 
 					} else {
-					//System.out.println("oui");
+					System.out.println("oui");
 					request.getSession().setAttribute("utilisateur", utilisateur);
-					response.sendRedirect("/encheres");
+					response.sendRedirect("/WEB-INF/jsp/encheres");
 
 					}
 				}

@@ -24,7 +24,7 @@
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
     
     <Resource
-		name="RepasPool"
+		name="jdbc/poolEncheresDB"
 		type="javax.sql.DataSource"
 		
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
