@@ -48,7 +48,7 @@ public class login extends HttpServlet {
 					} else {
 					//System.out.println("oui");
 					request.getSession().setAttribute("utilisateur", utilisateur);
-					response.sendRedirect("/user-connected");
+					response.sendRedirect("/encheres");
 
 					}
 				}
