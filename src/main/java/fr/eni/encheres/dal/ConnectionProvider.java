@@ -3,61 +3,58 @@ package fr.eni.encheres.dal;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-/**
- * Fournit des connexions a la DB
- *
- * @return	Connection
- */
-public class ConnectionProvider {
+public abstract class ConnectionProvider {
+
+	private static final String POOL_CONNEXION_NAME = "jdbc/poolEncheresDB";
+	private static final String RACINE_JNDI = "java:comp/env/";
 	
-	private DataSource pool;
+	private static DataSource dataSource;
 	
-	public ConnectionProvider() {
-		pool = obtenirPool();
-	}
-	
-	private DataSource obtenirPool() {
-		DataSource poolDeConnexions = null;
-		// -> necessite que le pool de connexions soit mis en place via context.xml
-		// 1. Obtenir l'annuaire
-		InitialContext annuaire = null;
-		try {
-			annuaire = new InitialContext();
-		} catch (NamingException e) {
-			e.printStackTrace();
-			System.out.println("Problème pour obtenir l'annuaire");
-		}
-		
-		// 2. Obtenir le pool en cherchant ds. l'annuaire
-		String repertoireAnnuaire = "java:/comp/env/";
-		String nomPool = "EncheresPool";
-		
-		try {
-			poolDeConnexions = (DataSource) annuaire.lookup(repertoireAnnuaire + nomPool);
-		} catch (NamingException e) {
-			e.printStackTrace();
-			System.out.println("Problème pour obtenir le pool de connexion");
-		}
-		
-		return poolDeConnexions;
-	}
-	
-	public Connection getConnexion() {
+	/**
+	 * Cette méthode retourne une connection opérationnelle issue du pool de connexion
+	 * vers la base de données. 
+	 * @return
+	 * @throws SQLException
+	 */
+	public static Connection getConnection() throws SQLException
+	{
 		Connection cnx = null;
 		
-		// 3. Demander une connnexion au pool
+		// Si le pool n'est pas connu, le récupérer
+		if (dataSource == null) {
+
+			Context annuaire = null;
+			try {
+				// Obtenir l'annuaire JNDI (annuaire de ressources)
+				annuaire = new InitialContext();
+
+				// Obtenir le pool de connexions
+				dataSource = (DataSource) annuaire.lookup(RACINE_JNDI + POOL_CONNEXION_NAME);
+
+			} catch (NamingException ne) {
+				System.err.println("Impossible de trouver le pool de connexions.");
+				ne.printStackTrace();
+			}
+
+		}
+
+		// Obtenir une connexion à la base de données
 		try {
-			cnx = pool.getConnection();
-		} catch (SQLException e) {
+			cnx = dataSource.getConnection(); // le pool nous prete une connexion disponible
+
+		} catch (NullPointerException | SQLException e) {
+			// Journaliser
+			System.err.println("Impossible d'obtenir une connexion.");
 			e.printStackTrace();
-			System.out.println("Problème pour obtenir une connexion");
+			// Laisser passer l'exception pour la couche au-dessus
+			throw e;
 		}
 
 		return cnx;
 	}
-
 }

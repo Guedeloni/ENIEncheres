@@ -38,7 +38,8 @@ public class LoginServlet extends HttpServlet {
 		//recuperer les infos de connexion saisies par l'utilisateur
 				String pseudoInput = request.getParameter("pseudoInput");
 				String mdpInput = request.getParameter("mdpInput");
-				String choixUtilisateur = request.getParameter("choixUtilisateur");
+//				String choixUtilisateur = request.getParameter("choixUtilisateur");
+				String choixUtilisateur = "connexion";
 				
 				System.out.println("connexion" + pseudoInput + mdpInput);
 
@@ -48,20 +49,21 @@ public class LoginServlet extends HttpServlet {
 					Utilisateur utilisateur = new Utilisateur();
 					try {
 						utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
+//						System.out.println(utilisateur.toString());
 					} catch (BLLException e) {
 						
 						e.printStackTrace();
 					}
-					if (utilisateur == null){
-						//System.out.println("non");
+					if (utilisateur.equals(null)){
+						System.out.println("non");
 						String message = "vous n'êtes pas inscrits";
 						request.setAttribute("message", message);
 						doGet(request, response);
 
 					} else {
-					//System.out.println("oui");
+					System.out.println("oui");
 					request.getSession().setAttribute("utilisateur", utilisateur);
-					response.sendRedirect("/encheres");
+					response.sendRedirect("/WEB-INF/jsp/encheres");
 
 					}
 				}

@@ -30,7 +30,7 @@
 	</nav>
 
 	<div class="container-md">
-		<form>
+		<form method="post" action="<c:url value="/LoginServlet" />">
 			<div class="form-group w-25">
 				<label for="pseudo">Identifiant</label> <input type="text"
 					class="form-control" id="pseudo" name="pseudoInput"
@@ -45,9 +45,7 @@
 
 			<div class="d-flex justify-content-around w-25 mt-3">
 				<div>
-					<a href="<c:url value="/login" />">
-						<button type="submit" class="btn btn-primary">Connexion</button>
-					</a>
+					<button type="submit" class="btn btn-primary">Connexion</button>
 
 				</div>
 
@@ -65,12 +63,12 @@
 				</div>
 			</div>
 
-			<div>
-
-				<a class="btn btn-primary mt-3"
-					href="<c:url value="/inscription" />"> Créer un compte </a>
-			</div>
 		</form>
+		<div>
+
+			<a class="btn btn-primary mt-3"
+				href="<c:url value="/inscription" />"> Créer un compte </a>
+		</div>
 	</div>
 
 
