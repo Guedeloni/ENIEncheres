@@ -33,6 +33,11 @@
 		<jsp-file>/WEB-INF/jsp/inscription.jsp</jsp-file>
 	</servlet>
 
+	<servlet>
+		<servlet-name>user_connected</servlet-name>
+		<jsp-file>/WEB-INF/jsp/user_connected.jsp</jsp-file>
+	</servlet>
+
 
 	<servlet-mapping>
 		<servlet-name>redirect</servlet-name>
@@ -57,6 +62,11 @@
 	<servlet-mapping>
 		<servlet-name>inscription</servlet-name>
 		<url-pattern>/inscription</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>user_connected</servlet-name>
+		<url-pattern>/user_connected</url-pattern>
 	</servlet-mapping>
 
 </web-app>

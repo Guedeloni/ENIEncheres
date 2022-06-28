@@ -11,23 +11,23 @@ import fr.eni.encheres.dal.DALException;
 
 public class UserDAOJdbcImpl {
 
-	private static final String SELECT_USER_BY_PSEUDO = "SELECT no_utilisateur, pseudo, nom, prenom,\r\n"
+	private static final String SELECT_USER_BY_PSEUDO_MDP = "SELECT no_utilisateur, pseudo, nom, prenom,\r\n"
 			+ "		email, telephone, rue, code_postal, ville,\r\n" + "		mot_de_passe, credit, administrateur\r\n"
-			+ "		FROM utilisateurs\r\n" + "		WHERE pseudo = ?";
+			+ "		FROM utilisateurs\r\n" + "		WHERE pseudo = ? AND mot_de_passe = ?";
 
 	private static final String INSERT_USER = "INSERT INTO utilisateurs(pseudo,nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private ConnectionProvider provider;
 
 	public UserDAOJdbcImpl() {
-//		provider = new ConnectionProvider();
 	}
 
-	public Utilisateur selectUserByPseudo(String pseudo) throws DALException {
+	public Utilisateur selectUserByPseudoMdP(String pseudo, String MdP) throws DALException {
 		Utilisateur userTrouve = new Utilisateur();
 		try (Connection cnx = createConnexion();) {
-			PreparedStatement ordreSelect = cnx.prepareStatement(SELECT_USER_BY_PSEUDO);
+			PreparedStatement ordreSelect = cnx.prepareStatement(SELECT_USER_BY_PSEUDO_MDP);
 			ordreSelect.setString(1, pseudo);
+			ordreSelect.setString(2, MdP);
 			ResultSet ligneResultante = ordreSelect.executeQuery();
 			if (!ligneResultante.next()) {
 				System.out.println("DAO : user non trouvé");
@@ -68,7 +68,7 @@ public class UserDAOJdbcImpl {
 		}
 		return user;
 	}
-
+	
 	public void insert(Utilisateur newUser) {
 
 		// s'il n'y a pas de parametre, cela ne sert à rien de continuer.

@@ -69,6 +69,12 @@
 			<a class="btn btn-primary mt-3"
 				href="<c:url value="/inscription" />"> Créer un compte </a>
 		</div>
+		
+		<div>
+			<c:if test="${ requestScope.message != '' }">
+				<p>${ requestScope.message }</p>
+			</c:if>
+		</div>
 	</div>
 
 

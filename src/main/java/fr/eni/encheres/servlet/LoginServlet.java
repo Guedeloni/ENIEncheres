@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UserManager;
@@ -19,6 +20,7 @@ import fr.eni.encheres.bo.Utilisateur;
 //@WebServlet(name = "login_page", urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String MSG_NON_INSCRIT = "Vous n'êtes pas inscrit";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -51,22 +53,25 @@ public class LoginServlet extends HttpServlet {
 			Utilisateur utilisateur = new Utilisateur();
 			try {
 				utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
-//						System.out.println(utilisateur.toString());
 			} catch (BLLException e) {
 
 				e.printStackTrace();
 			}
-			if (!utilisateur) {
+			if (utilisateur == null) {
 				System.out.println("non");
-				String message = "vous n'êtes pas inscrits";
+				String message = MSG_NON_INSCRIT;
 				request.setAttribute("message", message);
-				doGet(request, response);
+//						doGet(request, response);
+				getServletContext().getRequestDispatcher("/login").forward(request, response);
+				;
 
 			} else {
+				// Ouverture de session et renvoi a la page utilisateur-encheres
 				System.out.println("oui");
 				request.getSession().setAttribute("utilisateur", utilisateur);
-				response.sendRedirect("/WEB-INF/jsp/encheres");
-
+//					response.sendRedirect("/WEB-INF/jsp/encheres");
+				request.getRequestDispatcher("/user_connected").forward(request, response);
+				;
 			}
 		}
 
