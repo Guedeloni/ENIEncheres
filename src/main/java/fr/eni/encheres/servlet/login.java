@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UserManager;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -42,7 +43,13 @@ public class login extends HttpServlet {
 				//System.out.println(choixUtilisateur);
 				if(choixUtilisateur.equals("connexion")) {
 					//chercher ces logins dans la bdd pour voir s'ils existent ou non
-					Utilisateur utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
+					Utilisateur utilisateur = new Utilisateur();
+					try {
+						utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
+					} catch (BLLException e) {
+						
+						e.printStackTrace();
+					}
 					if (utilisateur == null){
 						//System.out.println("non");
 						String message = "vous n'êtes pas inscrits";
