@@ -67,7 +67,17 @@ public class Utilisateur {
 	
 	public Utilisateur(String pseudo2, String nom2, String prenom2, String email, String telephone2, String rue2,
 			String code_postal2, String ville2, String mot_de_passe2, int credit2, int administrateur2) {
-		// TODO Auto-generated constructor stub
+	
+	}
+
+
+		
+
+
+
+	public Utilisateur() {
+		
+		
 	}
 
 
@@ -186,6 +196,20 @@ public class Utilisateur {
 
 	public void setArticlesachete(List<Article> articlesachete) {
 		this.articlesachete = articlesachete;
+	}
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+				+ prenom + ", emai=" + emai + ", telephone=" + telephone + ", rue=" + rue + ", code_postal="
+				+ code_postal + ", ville=" + ville + ", mot_de_passe=" + mot_de_passe + ", credit=" + credit
+				+ ", administrateur=" + administrateur + ", articlesvendu=" + articlesvendu + ", articlesachete="
+				+ articlesachete + "]";
 	}
 	 
 	 
