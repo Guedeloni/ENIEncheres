@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,7 @@
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 			<!-- Logo -->
-			<a class="navbar-brand" href="<c:url value="/" />"> Eni-Enchères</a>
+			<a class="navbar-brand" href="<c:url value="/encheres" />"> Eni-Enchères</a>
 		</div>
 	</nav>
 
@@ -107,7 +110,9 @@
 
 			</div>
 
-			<div>Crédit <span class="font-weight-bold">640</span></div>
+			<div>
+				Crédit <span class="font-weight-bold">640</span>
+			</div>
 
 			<div class="d-flex justify-content-around w-25 mt-3">
 

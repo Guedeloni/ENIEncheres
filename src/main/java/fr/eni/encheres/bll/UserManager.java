@@ -1,7 +1,5 @@
 package fr.eni.encheres.bll;
 
-import java.util.List;
-
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.dao.UserDAOJdbcImpl;
 

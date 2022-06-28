@@ -25,16 +25,16 @@
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 			<!-- Logo -->
-			<a class="navbar-brand" href="<c:url value="/" />">Eni-Enchères</a>
+			<a class="navbar-brand" href="<c:url value="/encheres" />">Eni-Enchères</a>
 		</div>
 	</nav>
 
 	<div class="container-md">
 		<form>
 			<div class="form-group w-25">
-				<label for="Email">Email</label> <input type="email"
-					class="form-control" id="email" name="email"
-					aria-describedby="emailHelp" placeholder="Enter email">
+				<label for="pseudo">Identifiant</label> <input type="text"
+					class="form-control" id="pseudo" name="pseudo"
+					aria-describedby="pseudo" placeholder="NineJea">
 			</div>
 
 			<div class="form-group w-25 mt-3">

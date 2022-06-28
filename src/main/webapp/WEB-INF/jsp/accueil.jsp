@@ -25,7 +25,7 @@
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 			<!-- Logo -->
-			<a class="navbar-brand" href="#">Eni-Enchères</a>
+			<a class="navbar-brand" href="<c:url value="/encheres" />">Eni-Enchères</a>
 
 			<!-- burger menu -->
 			<button class="navbar-toggler" type="button"
@@ -40,7 +40,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="<c:url value="/login" />">S'inscrire</a></li>
+						aria-current="page" href="<c:url value="/inscription" />">S'inscrire</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="<c:url value="/login" />">Se connecter</a></li>
 				</ul>
