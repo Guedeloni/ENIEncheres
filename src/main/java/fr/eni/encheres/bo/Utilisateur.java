@@ -201,6 +201,17 @@ public class Utilisateur {
 
 
 
+	@Override
+	public String toString() {
+		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+				+ prenom + ", emai=" + emai + ", telephone=" + telephone + ", rue=" + rue + ", code_postal="
+				+ code_postal + ", ville=" + ville + ", mot_de_passe=" + mot_de_passe + ", credit=" + credit
+				+ ", administrateur=" + administrateur + ", articlesvendu=" + articlesvendu + ", articlesachete="
+				+ articlesachete + "]";
+	}
+
+
+
 	 
 	
 	
