@@ -29,7 +29,7 @@
 		
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		
-		url="jdbc:sqlserver://localhost:1433;databaseName=ENCHERES"
+		url="jdbc:sqlserver://10.103.200.14;databaseName=ENCHERES"
 		username="user_applicatif"
 		password="Pa$$w0rd"
 		
