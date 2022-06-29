@@ -35,8 +35,7 @@
 
 		<h2>Mon Profil</h2>
 
-		<form method="post" action="action="
-			<c:url value="/InscriptionServlet" />>
+		<form method="post" action="<c:url value="/InscriptionServlet" />">
 
 			<div
 				class="d-flex justify-content-around align-items-center w-50 p-3">
@@ -98,7 +97,7 @@
 					<div class="form-group mt-3">
 						<label for="confirmation mot de passe">Confirmation</label> <input
 							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe">
+							name="confirmation_mdp">
 					</div>
 				</div>
 
