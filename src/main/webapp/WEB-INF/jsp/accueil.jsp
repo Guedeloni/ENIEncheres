@@ -73,67 +73,76 @@
 			</select>
 		</div>
 
-		<div class="d-flex justify-content-around w-50 pb-4">
+		<c:if test="${! empty utilisateur.pseudo }">
 
-			<div>
+			<%--  si l'utilisateur est connecté on affiche les champs Achats et Ventes --%>
+
+			<div class="d-flex justify-content-around w-50 pb-4">
+
 				<div>
-					<input type="radio" id="achats" name="achats" value="achats"
-						checked> <label for="achats">Achats</label>
+					<div>
+						<input type="radio" id="achats" name="achats" value="achats"
+							checked> <label for="achats">Achats</label>
+					</div>
+
+					<div class="ms-5">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox"
+								value="encheres_ouvertes" id="encheres_ouvertes" checked>
+							<label class="form-check-label" for="encheres_ouvertes">
+								enchères ouvertes </label>
+						</div>
+
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox"
+								value="encheres_en_cours" id="encheres_en_cours"> <label
+								class="form-check-label" for="encheres_en_cours"> Mes
+								enchères en cours </label>
+						</div>
+
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox"
+								value="encheres_remporte" id="encheres_remporte"> <label
+								class="form-check-label" for="encheres_remporte"> Mes
+								enchères remportées </label>
+						</div>
+					</div>
 				</div>
 
-				<div class="ms-5">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							value="encheres_ouvertes" id="encheres_ouvertes" checked> <label
-							class="form-check-label" for="encheres_ouvertes">
-							enchères ouvertes </label>
+				<div>
+					<div>
+						<input type="radio" id="ventes" name="ventes" value="ventes">
+						<label for="ventess">Mes Ventes</label>
 					</div>
 
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							value="encheres_en_cours" id="encheres_en_cours">
-						<label class="form-check-label" for="encheres_en_cours">
-							Mes enchères en cours </label>
-					</div>
+					<div class="ms-5">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox"
+								value="ventes_en_cours" id="ventes_en_cours"> <label
+								class="form-check-label" for="ventes_en_cours"> mes
+								ventes en cours </label>
+						</div>
 
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							value="encheres_remporte" id="encheres_remporte">
-						<label class="form-check-label" for="encheres_remporte">
-							Mes enchères remportées </label>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox"
+								value="ventes_non_debute" id="ventes_non_debute"> <label
+								class="form-check-label" for="ventes_non_debute"> ventes
+								non débutées </label>
+						</div>
+
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox"
+								value="ventes_termine" id="ventes_termine"> <label
+								class="form-check-label" for="ventes_termine"> ventes
+								terminées </label>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div>
-				<div>
-					<input type="radio" id="ventes" name="ventes" value="ventes"> <label for="ventess">Mes Ventes</label>
-				</div>
 
-				<div class="ms-5">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							value="ventes_en_cours" id="ventes_en_cours"> <label
-							class="form-check-label" for="ventes_en_cours"> mes
-							ventes en cours </label>
-					</div>
+		</c:if>
 
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							value="ventes_non_debute" id="ventes_non_debute">
-						<label class="form-check-label" for="ventes_non_debute">
-							ventes non débutées </label>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox"
-							value="ventes_termine" id="ventes_termine"> <label
-							class="form-check-label" for="ventes_termine"> ventes
-							terminées </label>
-					</div>
-				</div>
-			</div>
-		</div>
 
 
 		<div class="d-flex justify-content-around">
