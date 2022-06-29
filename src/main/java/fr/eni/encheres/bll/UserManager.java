@@ -25,8 +25,8 @@ public class UserManager {
 	 * utilisateurReconnu(pseudo, MdP)
 	 * Renvoie utilisateur si 'Pseudo' existe ds. la DB ET si 'MdP' correspond au mot de passe du pseudo trouve
 	 * Renvoi utilisateur avec pseudo null sinon
-	 * @param pseudo
-	 * @param MdP
+	 * @param String pseudo
+	 * @param String MdP
 	 * @return	Utilisateur
 	 * @throws BLLException
 	 */
@@ -44,9 +44,20 @@ public class UserManager {
 		}
 	}
 	
-	public void creationUtilisateur(Utilisateur utilisateur) {
+	/**
+	 * creationUtilisateur(utilisateur)
+	 * Appel la DAO avec un utilisateur pour création
+	 * @param Utilisateur utilisateur
+	 * @throws BLLException
+	 */
+	public void creationUtilisateur(Utilisateur utilisateur) throws BLLException {
 		System.out.println("Passage ds. BLL");
-		dao.insert(utilisateur);
+		try {
+			dao.insert(utilisateur);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException("Problème à la création d'un nouvel utilisateur", e);
+		}
 	}
 
 	public static void updateProfil(Utilisateur utilisateur) {
