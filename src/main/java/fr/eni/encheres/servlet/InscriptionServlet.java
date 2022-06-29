@@ -18,9 +18,12 @@ import fr.eni.encheres.bo.Utilisateur;
  */
 
 public class InscriptionServlet extends HttpServlet {
-	private static final String PAGE_USER_CONNECTED = "/WEB-INF/jsp/user_connected.jsp";
 
 	private static final long serialVersionUID = 1L;
+
+	private static final String PAGE_USER_CONNECTED = "/WEB-INF/jsp/user_connected.jsp";
+	private static final String MSG_CHAMPS_OBLIGATOIRES = "Tous les champs sont obligatoires";
+	private static final String MSG_MDP_INCOHERENTS = "Mot de passe incohérent avec la confirmation";
 
 	private int credit = 0;
 	private int administrateur = 0;
@@ -63,13 +66,11 @@ public class InscriptionServlet extends HttpServlet {
 		String mot_de_passe = request.getParameter("mot_de_passe");
 		String confirmationMdp = request.getParameter("confirmation_mdp");
 
-		// public Utilisateur(String pseudo, String nom, String prenom, String email,
-		// String telephone, String rue,
-		// int code_postal, String ville, String mot_de_passe, int credit, int
-		// administrateur) {
+		// Creation nouvel Utilisateur
 		newUtilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,
 				credit, administrateur);
 
+		// Appel au manager si mdp = confirmation ET champs non vides
 		UserManager userMng = UserManager.getInstance();
 		if (mot_de_passe.equals(confirmationMdp)) {
 
@@ -86,13 +87,17 @@ public class InscriptionServlet extends HttpServlet {
 				rd.forward(request, response);
 			}
 			else {
-//				MSG ERREUR "tt. les champs sont obligatoire"
+				// MSG ERREUR "tt. les champs sont obligatoires"
+				String message = MSG_CHAMPS_OBLIGATOIRES;
+				request.setAttribute("message", message);
+				getServletContext().getRequestDispatcher("/inscription").forward(request, response);
 			}
 		}
 		else {
-//			MSG ERREUR "mot de passe incoherent"
+			// MSG ERREUR "Mot de passe incoherent avec la confirmation"
+			String message = MSG_MDP_INCOHERENTS;
+			request.setAttribute("message", message);
+			getServletContext().getRequestDispatcher("/inscription").forward(request, response);
 		}
-		
-//		doGet(request, response);
 	}
 }

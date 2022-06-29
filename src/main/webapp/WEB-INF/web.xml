@@ -5,16 +5,16 @@
 	id="WebApp_ID" version="4.0">
 
 	<welcome-file-list>
-		<welcome-file>accueil</welcome-file>
+		<welcome-file>encheres</welcome-file>
 	</welcome-file-list>
 
 	<!-- ACCUEIL -->
 	<servlet>
-		<servlet-name>accueil</servlet-name>
+		<servlet-name>encheres</servlet-name>
 		<jsp-file>/WEB-INF/jsp/accueil.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>accueil</servlet-name>
+		<servlet-name>encheres</servlet-name>
 		<url-pattern>/encheres</url-pattern>
 	</servlet-mapping>
 	
