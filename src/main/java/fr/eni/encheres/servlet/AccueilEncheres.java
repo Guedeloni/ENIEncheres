@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class accueilEnchères
  */
-public class accueilEncheres extends HttpServlet {
+public class AccueilEncheres extends HttpServlet {
 	private static final String PAGE_ACCUEIL_JSP = "/WEB-INF/jsp/accueil.jsp";
 	private static final long serialVersionUID = 1L;
 
