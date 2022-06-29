@@ -40,7 +40,7 @@
 
 
 <div class="contenu">
-		<a href="<c:url value="/profil_modif" />">
+		<a href="<c:url value="/modif_profil" />">
 			<input type="submit" value="Modifier" />
 		</a>
 	</div>
