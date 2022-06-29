@@ -13,7 +13,7 @@ public class Utilisateur {
 	
 	private String  prenom;
 	
-	private String emai;
+	private String email;
 	
 	private String  telephone;   
 	
@@ -48,7 +48,7 @@ public class Utilisateur {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.emai = emai;
+		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
 		this.code_postal = code_postal;
@@ -119,11 +119,11 @@ public class Utilisateur {
 	}
 
 	public String getEmai() {
-		return emai;
+		return email;
 	}
 
 	public void setEmai(String emai) {
-		this.emai = emai;
+		this.email = email;
 	}
 
 	public String getTelephone() {
@@ -206,7 +206,7 @@ public class Utilisateur {
 	@Override
 	public String toString() {
 		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
-				+ prenom + ", emai=" + emai + ", telephone=" + telephone + ", rue=" + rue + ", code_postal="
+				+ prenom + ", emai=" + email + ", telephone=" + telephone + ", rue=" + rue + ", code_postal="
 				+ code_postal + ", ville=" + ville + ", mot_de_passe=" + mot_de_passe + ", credit=" + credit
 				+ ", administrateur=" + administrateur + ", articlesvendu=" + articlesvendu + ", articlesachete="
 				+ articlesachete + "]";
