@@ -43,12 +43,10 @@ public class LoginServlet extends HttpServlet {
 		String pseudoInput = request.getParameter("pseudoInput");
 		String mdpInput = request.getParameter("mdpInput");
 //				String choixUtilisateur = request.getParameter("choixUtilisateur");
-		String choixUtilisateur = "connexion";
 
 		System.out.println("connexion" + pseudoInput + mdpInput);
 
-		// System.out.println(choixUtilisateur);
-		if (choixUtilisateur.equals("connexion")) {
+//		if (choixUtilisateur.equals("connexion")) {
 			// chercher ces logins dans la bdd pour voir s'ils existent ou non
 			Utilisateur utilisateur = new Utilisateur();
 			try {
@@ -73,11 +71,11 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("/user_connected").forward(request, response);
 				;
 			}
-		}
+//		}
 
-		if (choixUtilisateur.equals("creer un compte")) {
-			response.sendRedirect("/inscription");
-		}
+//		if (choixUtilisateur.equals("creer un compte")) {
+//			response.sendRedirect("/inscription");
+//		}
 
 	}
 }
