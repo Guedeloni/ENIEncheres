@@ -48,5 +48,18 @@ public class UserManager {
 		System.out.println("Passage ds. BLL");
 		dao.insert(utilisateur);
 	}
+
+	public static void updateProfil(Utilisateur utilisateur) {
+		
+		
+		try {
+			dao.updateUser(utilisateur);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 }
