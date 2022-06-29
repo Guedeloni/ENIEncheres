@@ -10,6 +10,7 @@ public class Utilisateur {
 
 	private String nom;
 
+
 	private String prenom;
 
 	private String email;
@@ -109,11 +110,13 @@ public class Utilisateur {
 		this.prenom = prenom;
 	}
 
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
+
 		this.email = email;
 	}
 
@@ -192,7 +195,9 @@ public class Utilisateur {
 	@Override
 	public String toString() {
 		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", code_postal="
+
 				+ code_postal + ", ville=" + ville + ", mot_de_passe=" + mot_de_passe + ", credit=" + credit
 				+ ", administrateur=" + administrateur + ", articlesvendu=" + articlesvendu + ", articlesachete="
 				+ articlesachete + "]";

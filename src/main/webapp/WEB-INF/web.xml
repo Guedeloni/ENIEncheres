@@ -13,10 +13,7 @@
 		<jsp-file>/WEB-INF/jsp/accueil.jsp</jsp-file>
 	</servlet>
 	
-	<servlet>
-		<servlet-name>redirect</servlet-name>
-		<jsp-file>/WEB-INF/jsp/accueil.jsp</jsp-file>
-	</servlet>
+	
 
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
@@ -49,10 +46,6 @@
 	</servlet>
 
 
-	<servlet-mapping>
-		<servlet-name>redirect</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>accueil</servlet-name>
@@ -77,6 +70,17 @@
 	<servlet-mapping>
 		<servlet-name>inscription</servlet-name>
 		<url-pattern>/inscription</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>profil</servlet-name>
+		<jsp-file>/WEB-INF/jsp/profile.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>profil</servlet-name>
+		<url-pattern>/profil</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
