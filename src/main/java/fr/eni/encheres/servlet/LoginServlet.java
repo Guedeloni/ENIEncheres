@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("oui");
 				request.getSession().setAttribute("utilisateur", utilisateur);
 //					response.sendRedirect("/WEB-INF/jsp/encheres");
-				request.getRequestDispatcher("/user_connected").forward(request, response);
+				request.getRequestDispatcher("/encheres").forward(request, response);
 				;
 			}
 //		}

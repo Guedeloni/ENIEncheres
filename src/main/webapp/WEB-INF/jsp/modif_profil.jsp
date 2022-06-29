@@ -101,18 +101,39 @@
 							type="password" class="form-control" id="mot_de_passe"
 							name="mot_de_passe" value="${param.mot_de_passe}">
 					</div>
+				
+					<c:choose>
+						<c:when test="${activedInput}">
+							<div class="form-group mt-3">
+								<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}">
+							</div>
 
-					<div class="form-group mt-3">
-						<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
-							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe" value="${param.mot_de_passe}">
-					</div>
+							<div class="form-group mt-3">
+								<label for="confirmation mot de passe">Confirmation</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}">
+							</div>
+						</c:when>
+						
+						<c:when test="${!activedInput}">
+							<div class="form-group mt-3">
+								<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}" disabled>
+							</div>
 
-					<div class="form-group mt-3">
-						<label for="confirmation mot de passe">Confirmation</label> <input
-							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe" value="${param.mot_de_passe}">
-					</div>
+							<div class="form-group mt-3">
+								<label for="confirmation mot de passe">Confirmation</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}" disabled>
+							</div>
+						</c:when>
+					</c:choose>
+
+
+
 				</div>
 
 			</div>
