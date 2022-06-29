@@ -15,7 +15,15 @@ public class UserDAOJdbcImpl {
 			+ "		email, telephone, rue, code_postal, ville,\r\n" + "		mot_de_passe, credit, administrateur\r\n"
 			+ "		FROM utilisateurs\r\n" + "		WHERE pseudo = ? AND mot_de_passe = ?";
 
-	private static final String INSERT_USER = "INSERT INTO utilisateurs(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_USER = "INSERT INTO utilisateurs(pseudo, nom, prenom, email, "
+			+ " telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) "
+			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	private static final String SQL_UPDATE_USER = "UPDATE utilisateurs SET no_utilisateur = ?, pseudo = ?, nom = ?, "
+			+ "prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, "
+			+ "mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
+	
+	private static final String SQL_DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
 
 	private ConnectionProvider provider;
 
@@ -68,7 +76,7 @@ public class UserDAOJdbcImpl {
 		}
 		return user;
 	}
-	
+
 	public void insert(Utilisateur newUser) {
 
 		// s'il n'y a pas de parametre, cela ne sert à rien de continuer.
