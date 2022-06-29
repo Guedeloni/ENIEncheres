@@ -45,6 +45,7 @@ public class UserManager {
 	}
 	
 	public void creationUtilisateur(Utilisateur utilisateur) {
+		System.out.println("Passage ds. BLL");
 		dao.insert(utilisateur);
 	}
 	

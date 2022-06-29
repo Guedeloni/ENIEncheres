@@ -75,7 +75,8 @@ public class UserDAOJdbcImpl {
 		if (newUser == null) {
 			return;
 		}
-
+		
+		System.out.println(newUser.toString());
 		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
 		{
 			try {

@@ -59,8 +59,8 @@ public class InscriptionServlet extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String code_postal = request.getParameter("code_postal");
 		String ville = request.getParameter("ville");
-		String mot_de_passe = request.getParameter("motDePasse");
-		String confirmationMdp = request.getParameter("confirmationMdp");
+		String mot_de_passe = request.getParameter("mot_de_passe");
+		String confirmationMdp = request.getParameter("confirmation_mdp");
 //		String choixUtilisateur = request.getParameter("choixUtilisateur");
 
 		// public Utilisateur(String pseudo, String nom, String prenom, String email,
