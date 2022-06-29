@@ -3,45 +3,43 @@ package fr.eni.encheres.bo;
 import java.util.List;
 
 public class Utilisateur {
-	
-	private int  no_utilisateur ;
-	
-	private String  pseudo; 
-	
+
+	private int no_utilisateur;
+
+	private String pseudo;
+
 	private String nom;
-	
-	
-	private String  prenom;
-	
+
+
+	private String prenom;
+
 	private String email;
-	
-	private String  telephone;   
-	
-	private String  rue;
-	
-	private int  code_postal;
-	
-	
+
+	private String telephone;
+
+	private String rue;
+	// code_postal est un String dans les cas où par ex on tape 01 pour Laon
+	// car il va croire que c'est 1 car 0+1 ou encore quand il y a des lettres dans les départements
+	private String code_postal;
+
 	private String ville;
-	
-	private String mot_de_passe ;
-	
-	private int credit ;
-	
+
+	private String mot_de_passe;
+
+	private int credit;
+
 	private int administrateur = 0;
-	 
-	 
-	 //
-	 
-	 private List<Article>articlesvendu; //relation
-	 
-	 private List<Article>articlesachete;
-	 
-	 //constructeur
 
+	//
 
-	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String emai, String telephone,
-			String rue, int code_postal, String ville, String mot_de_passe, int credit, int administrateur,
+	private List<Article> articlesvendu; // relation
+
+	private List<Article> articlesachete;
+
+	// constructeur
+
+	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String mot_de_passe, int credit, int administrateur,
 			List<Article> articlesvendu, List<Article> articlesachete) {
 		super();
 		this.no_utilisateur = no_utilisateur;
@@ -60,32 +58,26 @@ public class Utilisateur {
 		this.articlesachete = articlesachete;
 	}
 
-	
-	
-	
-	
-	
-	public Utilisateur(String pseudo2, String nom2, String prenom2, String email, String telephone2, String rue2,
-			String code_postal2, String ville2, String mot_de_passe2, int credit2, int administrateur2) {
-	
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.code_postal = code_postal;
+		this.ville = ville;
+		this.mot_de_passe = mot_de_passe;
+		this.credit = credit;
+		this.administrateur = administrateur;
 	}
-
-
-		
-
-
 
 	public Utilisateur() {
-		
-		
+
 	}
 
-
-
-
-
-
-	//getters et setter 
+	// getters et setter
 	public int getNo_utilisateur() {
 		return no_utilisateur;
 	}
@@ -118,11 +110,13 @@ public class Utilisateur {
 		this.prenom = prenom;
 	}
 
-	public String getEmai() {
+
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmai(String emai) {
+	public void setEmail(String email) {
+
 		this.email = email;
 	}
 
@@ -142,11 +136,11 @@ public class Utilisateur {
 		this.rue = rue;
 	}
 
-	public int getCode_postal() {
+	public String getCode_postal() {
 		return code_postal;
 	}
 
-	public void setCode_postal(int code_postal) {
+	public void setCode_postal(String code_postal) {
 		this.code_postal = code_postal;
 	}
 
@@ -198,28 +192,15 @@ public class Utilisateur {
 		this.articlesachete = articlesachete;
 	}
 
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
-				+ prenom + ", emai=" + email + ", telephone=" + telephone + ", rue=" + rue + ", code_postal="
+
+				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", code_postal="
+
 				+ code_postal + ", ville=" + ville + ", mot_de_passe=" + mot_de_passe + ", credit=" + credit
 				+ ", administrateur=" + administrateur + ", articlesvendu=" + articlesvendu + ", articlesachete="
 				+ articlesachete + "]";
 	}
-	 
-	 
-	
-	
-	 
-	 
-	
-	 
-	
-	
 
 }

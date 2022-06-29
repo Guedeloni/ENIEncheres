@@ -24,7 +24,7 @@ public class UserManager {
 	/**
 	 * utilisateurReconnu(pseudo, MdP)
 	 * Renvoie utilisateur si 'Pseudo' existe ds. la DB ET si 'MdP' correspond au mot de passe du pseudo trouve
-	 * Renvoi null sinon
+	 * Renvoi utilisateur avec pseudo null sinon
 	 * @param pseudo
 	 * @param MdP
 	 * @return	Utilisateur
@@ -32,16 +32,21 @@ public class UserManager {
 	 */
 	public Utilisateur utilisateurReconnu(String pseudo, String MdP) throws BLLException {
 		try {
-			Utilisateur utilisateurTrouve = null;
-			if (dao.selectUserByPseudo(pseudo) != null) {
-				if (dao.selectUserByPseudo(pseudo).getMot_de_passe().equals(MdP))
-					utilisateurTrouve = dao.selectUserByPseudo(pseudo);
+			Utilisateur utilisateurTrouve = dao.selectUserByPseudoMdP(pseudo, MdP);
+			if ( utilisateurTrouve != null) {
+					return utilisateurTrouve;
 			};
-			return utilisateurTrouve;
+			return null;
 		}
 		catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException("Problème à la récupération de l'utilisateur via pseudo", e);
 		}
 	}
+	
+	public void creationUtilisateur(Utilisateur utilisateur) {
+		System.out.println("Passage ds. BLL");
+		dao.insert(utilisateur);
+	}
+	
 }
