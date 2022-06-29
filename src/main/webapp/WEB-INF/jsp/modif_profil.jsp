@@ -1,9 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Mofifiaction Profil</title>
+</head>
+<body>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+	<!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -90,11 +100,17 @@
 					</div>
 
 					<div class="form-group mt-3">
-						<label for="Mot de passe actuel">Mot de passe</label> <input
+						<label for="Mot de passe actuel">Mot de passe actuel</label> <input
 							type="password" class="form-control" id="mot_de_passe"
 							name="mot_de_passe">
 					</div>
-
+					
+					<div class="form-group mt-3">
+						<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
+							type="password" class="form-control" id="mot_de_passe"
+							name="mot_de_passe">
+					</div>
+ 
 					<div class="form-group mt-3">
 						<label for="confirmation mot de passe">Confirmation</label> <input
 							type="password" class="form-control" id="mot_de_passe"
@@ -111,16 +127,18 @@
 			<div class="d-flex justify-content-around w-25 mt-3">
 
 				<div>
-					<button type="submit" class="btn btn-primary">Creer</button>
+					<button type="submit" class="btn btn-primary">Enregistrer</button>
 				</div>
 
 				<div>
-					<button type="submit" class="btn btn-primary">Annuler</button>
+					<button type="submit" class="btn btn-primary">Supprimer mon compte</button>
 				</div>
 			</div>
 
 		</form>
 	</div>
 
+</body>
+</html>
 </body>
 </html>

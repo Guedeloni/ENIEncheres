@@ -15,7 +15,7 @@ public class UserDAOJdbcImpl {
 			+ "		email, telephone, rue, code_postal, ville,\r\n" + "		mot_de_passe, credit, administrateur\r\n"
 			+ "		FROM utilisateurs\r\n" + "		WHERE pseudo = ? AND mot_de_passe = ?";
 
-	private static final String INSERT_USER = "INSERT INTO utilisateurs(pseudo,nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_USER = "INSERT INTO utilisateurs(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private ConnectionProvider provider;
 

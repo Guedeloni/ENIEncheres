@@ -16,7 +16,7 @@ import fr.eni.encheres.bo.Utilisateur;
  * Servlet implementation class inscription
  */
 
-public class Inscription extends HttpServlet {
+public class InscriptionServlet extends HttpServlet {
 	private static final String PAGE_ACCUEIL = "/WEB-INF/jsp/accueil.jsp";
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +29,7 @@ public class Inscription extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Inscription() {
+	public InscriptionServlet() {
 		super();
 
 	}

@@ -37,6 +37,11 @@
 		<servlet-name>user_connected</servlet-name>
 		<jsp-file>/WEB-INF/jsp/user_connected.jsp</jsp-file>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>modif_profil</servlet-name>
+		<jsp-file>/WEB-INF/jsp/modif_profil.jsp</jsp-file>
+	</servlet>
 
 
 	<servlet-mapping>
@@ -67,6 +72,11 @@
 	<servlet-mapping>
 		<servlet-name>user_connected</servlet-name>
 		<url-pattern>/user_connected</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>modif_profil</servlet-name>
+		<url-pattern>/modif_profil</url-pattern>
 	</servlet-mapping>
 
 </web-app>
