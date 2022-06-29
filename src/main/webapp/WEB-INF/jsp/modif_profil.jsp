@@ -38,7 +38,7 @@
 		<h2>Mon Profil</h2>
 
 		<form method="post"
-			action="${pageContext.request.contextPath}/InscriptionServlet">
+			action="${pageContext.request.contextPath}/ModifierProfil">
 
 			<div
 				class="d-flex justify-content-around align-items-center w-50 p-3">

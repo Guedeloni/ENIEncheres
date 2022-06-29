@@ -78,6 +78,15 @@
 	
 	<!-- MODIF_PROFIL -->	
 	<servlet>
+		<servlet-name>ModifierProfil</servlet-name>
+		<servlet-class>/ModifierProfil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifierProfil</servlet-name>
+		<url-pattern>/ModifierProfil</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>modif_profil</servlet-name>
 		<jsp-file>/WEB-INF/jsp/modif_profil.jsp</jsp-file>
 	</servlet>
