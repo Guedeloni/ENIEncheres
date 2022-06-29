@@ -19,9 +19,10 @@ public class UserDAOJdbcImpl {
 			+ " telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) "
 			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	private static final String SQL_UPDATE_USER = "UPDATE utilisateurs SET no_utilisateur = ?, pseudo = ?, nom = ?, "
-			+ "prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, "
-			+ "mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
+	
+	
+	private static final String SQL_UPDATE_USER= "UPDATE UTILISATEURS SET pseudo=?, nom=?,"
+			+ " prenom=?, email=?, telephone=?,rue=?, code_postal=?,ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 	
 	private static final String SQL_DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
 
@@ -105,7 +106,95 @@ public class UserDAOJdbcImpl {
 		}
 
 	}
+	
+	
+				//Update suite modif 
+	
+	public void updateProfil(Utilisateur utilisateur) throws DALException {
+		// s'il n'y a pas de parametre, cela ne sert à rien de continuer.
+				if (utilisateur == null) {
+					return;
+				}
+				
 
+				System.out.println(utilisateur.toString());
+				try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
+				{
+					try {
+						cnx.setAutoCommit(false);
+
+						// Preparation ajout dans la table Utilisateur
+						PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE_USER);
+
+						// Valorisation des parametres du PreparedStatement
+						pstmt.setString(1, utilisateur.getPseudo());
+						pstmt.setString(2, utilisateur.getNom());
+						pstmt.setString(3, utilisateur.getPrenom());
+						pstmt.setString(4, utilisateur.getEmail());
+						pstmt.setString(5, utilisateur.getTelephone());
+						pstmt.setString(6, utilisateur.getRue());
+						pstmt.setString(7, utilisateur.getCode_postal());
+						pstmt.setString(8, utilisateur.getVille());
+						pstmt.setString(9, utilisateur.getMot_de_passe());
+						pstmt.setInt(10, utilisateur.getCredit());
+						
+
+						// Execution de la requete
+						pstmt.executeUpdate();
+
+						pstmt.close();
+
+						// Tout s'est bien passé => transaction validée
+						cnx.commit();
+					} catch (Exception e) {
+						e.printStackTrace();
+						// Il y a eu une probleme => transaction annulée
+						cnx.rollback();
+						throw new DALException("Problème à la modification de l' utilisateur => rollback", e);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+		
+	public void removeUser( int no_utilisateur) throws DALException {
+		
+		
+		
+		try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
+		{
+			try {
+				cnx.setAutoCommit(false);
+
+				
+				PreparedStatement pstmt = cnx.prepareStatement(SQL_DELETE_USER);
+				pstmt.setInt(1, no_utilisateur);
+				pstmt.executeUpdate();
+
+				pstmt.close();
+
+				// Tout s'est bien passé => transaction validée
+				cnx.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				// Il y a eu une probleme => transaction annulée
+				cnx.rollback();
+				throw new DALException("Problème à la suppresion  de l' utilisateur => rollback", e);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+				
+				
+		
+	
+	
+
+	
+	
 	// METHODES INTERNES
 	private Connection createConnexion() throws DALException {
 		try {
