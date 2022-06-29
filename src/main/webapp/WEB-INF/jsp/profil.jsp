@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<h1>Mon profile </h1>
+<h1>Mon profil </h1>
 
 <div>Pseudo : ${utilisateur.pseudo }</div>
 <div>Nom  : ${utilisateur.nom }</div>
@@ -40,8 +40,8 @@
 
 
 <div class="contenu">
-		<a href="<c:url value="/profil-modif" />">
-			<input type="button" value="Modifier" />
+		<a href="<c:url value="/profil_modif" />">
+			<input type="submit" value="Modifier" />
 		</a>
 	</div>
 
