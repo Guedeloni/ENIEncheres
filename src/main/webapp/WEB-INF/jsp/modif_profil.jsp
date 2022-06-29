@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -36,8 +37,8 @@
 
 		<h2>Mon Profil</h2>
 
-		<form method="post" action="action="
-			<c:url value="/InscriptionServlet" />>
+		<form method="post"
+			action="${pageContext.request.contextPath}/InscriptionServlet">
 
 			<div
 				class="d-flex justify-content-around align-items-center w-50 p-3">
@@ -45,35 +46,39 @@
 					<div class="form-group">
 						<label for="Pseudo">Pseudo</label> <input type="text"
 							class="form-control" id="pseudo" aria-describedby="pseudo"
-							placeholder="votre pseudo" name="pseudo">
+							placeholder="votre pseudo" name="pseudo" value="${param.pseudo}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="nom">Nom</label> <input type="text"
-							class="form-control" id="nom" placeholder="Doe" name="nom">
+							class="form-control" id="nom" placeholder="Doe" name="nom"
+							value="${param.nom}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="prénom">Prénom</label> <input type="text"
-							class="form-control" id="prenom" placeholder="John" name="prenom">
+							class="form-control" id="prenom" placeholder="John" name="prenom"
+							value="${param.prenom}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="email">Email</label> <input type="email"
 							class="form-control" id="email" aria-describedby="email"
-							placeholder="john-doe@gmail.com" name="email">
+							placeholder="john-doe@gmail.com" name="email"
+							value="${param.email}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="telephone">Téléphone</label> <input type="text"
 							class="form-control" id="telephone" aria-describedby="telephone"
-							placeholder="06 12 39 84 52" name="telephone">
+							placeholder="06 12 39 84 52" name="telephone"
+							value="${param.telephone}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="rue">Rue</label> <input type="text"
 							class="form-control" id="rue" placeholder="12 rue de l'Eni"
-							name="rue">
+							name="rue" value="${param.rue}">
 					</div>
 
 				</div>
@@ -82,31 +87,53 @@
 					<div class="form-group mt-3">
 						<label for="code_postal">Code postal</label> <input type="text"
 							class="form-control" id="code_postal" placeholder="44000"
-							name="code_postal">
+							name="code_postal" value="${param.code_postal}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="ville">Ville</label> <input type="text"
-							class="form-control" id="ville" placeholder="Nantes" name="ville">
+							class="form-control" id="ville" placeholder="Nantes" name="ville"
+							value="${param.ville}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="Mot de passe actuel">Mot de passe actuel</label> <input
 							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe">
+							name="mot_de_passe" value="${param.mot_de_passe}">
 					</div>
-					
-					<div class="form-group mt-3">
-						<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
-							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe">
-					</div>
- 
-					<div class="form-group mt-3">
-						<label for="confirmation mot de passe">Confirmation</label> <input
-							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe">
-					</div>
+				
+					<c:choose>
+						<c:when test="${activedInput}">
+							<div class="form-group mt-3">
+								<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}">
+							</div>
+
+							<div class="form-group mt-3">
+								<label for="confirmation mot de passe">Confirmation</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}">
+							</div>
+						</c:when>
+						
+						<c:when test="${!activedInput}">
+							<div class="form-group mt-3">
+								<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}" disabled>
+							</div>
+
+							<div class="form-group mt-3">
+								<label for="confirmation mot de passe">Confirmation</label> <input
+									type="password" class="form-control" id="mot_de_passe"
+									name="mot_de_passe" value="${param.mot_de_passe}" disabled>
+							</div>
+						</c:when>
+					</c:choose>
+
+
+
 				</div>
 
 			</div>
@@ -122,7 +149,8 @@
 				</div>
 
 				<div>
-					<button type="submit" class="btn btn-primary">Supprimer mon compte</button>
+					<button type="submit" class="btn btn-primary">Supprimer
+						mon compte</button>
 				</div>
 			</div>
 
