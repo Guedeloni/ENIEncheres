@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.UserManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -60,7 +61,7 @@ public class Inscription extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String mot_de_passe = request.getParameter("motDePasse");
 		String confirmationMdp = request.getParameter("confirmationMdp");
-		String choixUtilisateur = request.getParameter("choixUtilisateur");
+//		String choixUtilisateur = request.getParameter("choixUtilisateur");
 
 		// public Utilisateur(String pseudo, String nom, String prenom, String email,
 		// String telephone, String rue,
@@ -69,21 +70,22 @@ public class Inscription extends HttpServlet {
 		newUtilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,
 				credit, administrateur);
 
-		if (choixUtilisateur.equals("créer")) {
-			if (mot_de_passe.equals(confirmationMdp)) {
+//		if (choixUtilisateur.equals("créer")) {
+		UserManager userMng = UserManager.getInstance();
+		if (mot_de_passe.equals(confirmationMdp)) {
 
-				if (!pseudo.isEmpty() && !nom.isEmpty() && !prenom.isEmpty() && !ville.isEmpty() && !rue.isEmpty()
-						&& !code_postal.isEmpty() && !email.isEmpty() && !mot_de_passe.isEmpty()
-						&& !confirmationMdp.isEmpty())
-					;
+			if (!pseudo.isEmpty() && !nom.isEmpty() && !prenom.isEmpty() && !ville.isEmpty() && !rue.isEmpty()
+					&& !code_postal.isEmpty() && !email.isEmpty() && !mot_de_passe.isEmpty()
+					&& !confirmationMdp.isEmpty())
+				userMng.creationUtilisateur(newUtilisateur);
 
-			}
+//			}
 			// Transfert de l'affichage à la JSP
-			RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL);
-			rd.forward(request, response);
-
-			doGet(request, response);
 
 		}
+		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL);
+		rd.forward(request, response);
+		
+		doGet(request, response);
 	}
 }

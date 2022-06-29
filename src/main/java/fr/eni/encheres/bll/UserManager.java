@@ -43,4 +43,9 @@ public class UserManager {
 			throw new BLLException("Problème à la récupération de l'utilisateur via pseudo", e);
 		}
 	}
+	
+	public void creationUtilisateur(Utilisateur utilisateur) {
+		dao.insert(utilisateur);
+	}
+	
 }
