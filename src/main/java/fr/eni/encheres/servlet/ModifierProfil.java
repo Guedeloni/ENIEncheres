@@ -45,12 +45,13 @@ public class ModifierProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		boolean activeInput = false;
+		// Recuperation des donnees de la session en cours
 		utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		
+		// Recuperation des valeurs du formulaire
 		String choixUtilisateur = request.getParameter("choixUtilisateur");
 		
-		
 		if(choixUtilisateur.equals("Enregistrer")) {
-			
 			
 			String pseudo = request.getParameter("pseudo");
 			String nom = request.getParameter("nom");
@@ -66,13 +67,16 @@ public class ModifierProfil extends HttpServlet {
 			
 			int no_utilisateur = Integer.valueOf(request.getParameter("no_utilisateur"));
 			
+			// Verification de coherence entre MdP du formulaire et MdP de l'utilisateur de la session
 			if (mot_de_passe.equals(utilisateur.getMot_de_passe())) {
 				
 				activeInput = true;
 				
-				
-				
 			}
+			// En cas d'erreur => retour au formulaire avec msg d'erreur + reaffichage des valeurs saisies
+				
+			
+			// Verification de coherence pour le nouveau MdP
 			if (nouveauMdp.equals(confirmationMdp)) {
 				
 				try {
@@ -86,9 +90,10 @@ public class ModifierProfil extends HttpServlet {
 				String message = "Votre profil a été modifié!";
 				request.setAttribute("message", message);
 				
-				
-				
 			}
+			// En cas d'erreur => retour au formulaire avec msg d'erreur + reaffichage des valeurs saisies
+			
+			
 			//supprimer un utilisateur
 			if(choixUtilisateur.equals("Supprimer mon compte")) {
 //				request.getSession().getAttribute("utilisateur");
