@@ -119,11 +119,19 @@
 				</div>
 
 				<div>
-					<button type="submit" class="btn btn-primary">Annuler</button>
+					<a href="<c:url value="/encheres" />">
+						<button type="submit" class="btn btn-primary">Annuler</button>
+					</a>
 				</div>
 			</div>
 
 		</form>
+		
+		<div>
+			<c:if test="${ requestScope.message != '' }">
+				<p>${ requestScope.message }</p>
+			</c:if>
+		</div>
 	</div>
 
 </body>
