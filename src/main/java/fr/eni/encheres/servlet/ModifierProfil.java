@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UserManager;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -17,6 +18,7 @@ import fr.eni.encheres.bo.Utilisateur;
 public class ModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Utilisateur utilisateur;
+	UserManager userMng = UserManager.getInstance();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -73,7 +75,12 @@ public class ModifierProfil extends HttpServlet {
 			}
 			if (nouveauMdp.equals(confirmationMdp)) {
 				
-				UserManager.updateProfil(utilisateur);
+				try {
+					userMng.updateProfil(utilisateur);
+				} catch (BLLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				request.getSession().setAttribute("utilisateur", utilisateur);
 				String message = "Votre profil a été modifié!";
@@ -81,6 +88,18 @@ public class ModifierProfil extends HttpServlet {
 				
 				
 				
+			}
+			//supprimer un utilisateur
+			if(choixUtilisateur.equals("Supprimer mon compte")) {
+//				request.getSession().getAttribute("utilisateur");
+//				System.out.println(utilisateur.toString());
+				int numeroUtilisateur = Integer.valueOf(request.getParameter("no_utilisateur"));
+				//System.out.println(no_utilisateur);
+				userMng.removeUser(numeroUtilisateur);
+				request.getSession().removeAttribute("utilisateur");
+				String message = "Votre compte a été supprimé!";
+				request.setAttribute("message", message);
+				doGet(request, response);
 			}
 		}
 			
