@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UserManager;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -17,7 +18,7 @@ import fr.eni.encheres.bo.Utilisateur;
  */
 
 public class InscriptionServlet extends HttpServlet {
-	private static final String PAGE_ACCUEIL = "/WEB-INF/jsp/accueil.jsp";
+	private static final String PAGE_USER_CONNECTED = "/WEB-INF/jsp/user_connected.jsp";
 
 	private static final long serialVersionUID = 1L;
 
@@ -61,7 +62,6 @@ public class InscriptionServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String mot_de_passe = request.getParameter("mot_de_passe");
 		String confirmationMdp = request.getParameter("confirmation_mdp");
-//		String choixUtilisateur = request.getParameter("choixUtilisateur");
 
 		// public Utilisateur(String pseudo, String nom, String prenom, String email,
 		// String telephone, String rue,
@@ -70,22 +70,29 @@ public class InscriptionServlet extends HttpServlet {
 		newUtilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,
 				credit, administrateur);
 
-//		if (choixUtilisateur.equals("créer")) {
 		UserManager userMng = UserManager.getInstance();
 		if (mot_de_passe.equals(confirmationMdp)) {
 
 			if (!pseudo.isEmpty() && !nom.isEmpty() && !prenom.isEmpty() && !ville.isEmpty() && !rue.isEmpty()
 					&& !code_postal.isEmpty() && !email.isEmpty() && !mot_de_passe.isEmpty()
-					&& !confirmationMdp.isEmpty())
-				userMng.creationUtilisateur(newUtilisateur);
-
-//			}
-			// Transfert de l'affichage à la JSP
-
+					&& !confirmationMdp.isEmpty()) {
+				try {
+					userMng.creationUtilisateur(newUtilisateur);
+				} catch (BLLException e) {
+					e.printStackTrace();
+				}
+				// Redirection vers page utilisateur
+				RequestDispatcher rd = request.getRequestDispatcher(PAGE_USER_CONNECTED);
+				rd.forward(request, response);
+			}
+			else {
+//				MSG ERREUR "tt. les champs sont obligatoire"
+			}
 		}
-		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL);
-		rd.forward(request, response);
+		else {
+//			MSG ERREUR "mot de passe incoherent"
+		}
 		
-		doGet(request, response);
+//		doGet(request, response);
 	}
 }

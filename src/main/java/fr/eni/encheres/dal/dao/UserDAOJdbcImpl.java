@@ -44,6 +44,61 @@ public class UserDAOJdbcImpl {
 		return userTrouve;
 	}
 
+	public void insert(Utilisateur newUser) throws DALException {
+
+		// s'il n'y a pas de parametre, cela ne sert à rien de continuer.
+		if (newUser == null) {
+			return;
+		}
+		
+		System.out.println(newUser.toString());
+		try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
+		{
+			try {
+				cnx.setAutoCommit(false);
+
+				// Preparation ajout dans la table Utilisateur
+				PreparedStatement pstmt = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
+
+				// Valorisation des parametres du PreparedStatement
+				pstmt.setString(1, newUser.getPseudo());
+				pstmt.setString(2, newUser.getNom());
+				pstmt.setString(3, newUser.getPrenom());
+				pstmt.setString(4, newUser.getEmail());
+				pstmt.setString(5, newUser.getTelephone());
+				pstmt.setString(6, newUser.getRue());
+				pstmt.setString(7, newUser.getCode_postal());
+				pstmt.setString(8, newUser.getVille());
+				pstmt.setString(9, newUser.getMot_de_passe());
+				pstmt.setInt(10, newUser.getCredit());
+				pstmt.setByte(11, (byte)newUser.getAdministrateur());
+
+				// Execution de la requete
+				pstmt.executeUpdate();
+
+				// Récupération de l'ID généré pour le Utilisateur
+				ResultSet rs = pstmt.getGeneratedKeys();
+				if (rs.next()) {
+					newUser.setNo_utilisateur(rs.getInt(1)); // l' Utilisateur du Modèle est mis à jour
+				}
+
+				rs.close();
+				pstmt.close();
+
+				// Tout s'est bien passé => transaction validée
+				cnx.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				// Il y a eu une probleme => transaction annulée
+				cnx.rollback();
+				throw new DALException("Problème à l'insertion d'un nouvel utilisateur => rollback", e);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	// METHODES INTERNES
 	private Connection createConnexion() throws DALException {
 		try {
@@ -69,70 +124,4 @@ public class UserDAOJdbcImpl {
 		return user;
 	}
 	
-	public void insert(Utilisateur newUser) {
-
-		// s'il n'y a pas de parametre, cela ne sert à rien de continuer.
-		if (newUser == null) {
-			return;
-		}
-		
-		System.out.println(newUser.toString());
-		try (Connection cnx = ConnectionProvider.getConnection()) // la connexion va être automatiquement fermée
-		{
-			try {
-				cnx.setAutoCommit(false);
-
-				// ********************
-				// Ajout dans la table Utilisateur
-
-				PreparedStatement pstmt = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
-
-				// Valorisation des parametres du PreparedStatement
-				pstmt.setString(1, newUser.getPseudo());
-				pstmt.setString(2, newUser.getNom());
-				pstmt.setString(3, newUser.getPrenom());
-				pstmt.setString(4, newUser.getEmail());
-				pstmt.setString(5, newUser.getTelephone());
-				pstmt.setString(6, newUser.getRue());
-				pstmt.setString(7, newUser.getCode_postal());
-				pstmt.setString(8, newUser.getVille());
-				pstmt.setLong(9, newUser.getCredit());
-				pstmt.setLong(10, newUser.getAdministrateur());
-
-				// Execution de la requete
-				pstmt.executeUpdate();
-
-				// Récupération de l'ID généré pour le Utilisateur
-				ResultSet rs = pstmt.getGeneratedKeys();
-				if (rs.next()) {
-					newUser.setNo_utilisateur(rs.getInt(1)); // l' Utilisateur du Modèle est mis à jour
-				}
-
-				rs.close();
-				pstmt.close();
-
-				// ********************
-				// Ajout dans la table UTILISATEURS
-
-				// Création d'une nouvelle instance de PreparedStatement pour les utilisateurs
-				// (la variable locale pstmt peut être réutilisée)
-				pstmt = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
-
-				pstmt.close();
-
-				// Tout s'est bien passé => transaction validée
-				cnx.commit();
-			} catch (Exception e) {
-				// Journalisation
-				e.printStackTrace();
-
-				// Il y a eu une probleme => transaction annulée
-				cnx.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
 }
