@@ -50,7 +50,6 @@ public class LoginServlet extends HttpServlet {
 		try {
 			utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
 		} catch (BLLException e) {
-
 			e.printStackTrace();
 		}
 		if (utilisateur == null) {
@@ -58,10 +57,9 @@ public class LoginServlet extends HttpServlet {
 			String message = MSG_NON_INSCRIT;
 			request.setAttribute("message", message);
 			getServletContext().getRequestDispatcher("/login").forward(request, response);
-			;
 
 		} else {
-			// Ouverture de session et renvoi a la page utilisateur-encheres
+			// Ouverture de session et renvoi a la page uutilisateur-encheres
 			System.out.println("oui");
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/encheres").forward(request, response);
