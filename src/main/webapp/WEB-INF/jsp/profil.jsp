@@ -26,29 +26,9 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-<h1>Mon profil </h1>
-
-<div>Pseudo : ${utilisateur.pseudo }</div>
-<div>Nom  : ${utilisateur.nom }</div>
-<div>Prénom : ${utilisateur. prenom }</div>
-<div>Email : ${utilisateur.email }</div>
-<div>Telèphone : ${utilisateur.telephone }</div>
-<div>Rue : ${utilisateur.rue }</div>
-<div>Code postal : ${utilisateur.code_postal }</div>
-<div>Ville : ${utilisateur. ville}</div>
-
-
-<div class="contenu">
-		<a href="<c:url value="/modif_profil" />">
-			<input type="submit" value="Modifier" />
-		</a>
-	</div>
-
-=======
 <%-- 	<c:if test="${ request.getSession(false) != null }"> --%>
 
-		<h1>Mon profil </h1>
+		<h2>Mon profil </h2>
 		
 		<div>Pseudo : ${utilisateur.pseudo }</div>
 		<div>Nom  : ${utilisateur.nom }</div>
@@ -75,6 +55,6 @@
 			</a>
 		</div>
 	</c:if> --%>
->>>>>>> cec45dcb9f53e9f81f3cd795cae731c721c72a61
+	
 </body>
 </html>
