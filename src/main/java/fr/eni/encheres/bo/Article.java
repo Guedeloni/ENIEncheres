@@ -18,9 +18,9 @@ public class Article {
 
 	private int prix_vente;
 
-	private Categorie no_categorie; // implementation de l association unidirectionnel
+	private Categorie no_categorie;		// implementation de l association unidirectionnel
 
-	private Utilisateur no_utilisateur;
+	private Utilisateur no_utilisateur;	// utilisateur proprietaire (?)
 
 	// constructeur
 
