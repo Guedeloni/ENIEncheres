@@ -20,7 +20,6 @@ public class InscriptionServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_USER_CONNECTED = "/WEB-INF/jsp/user_connected.jsp";
 	private static final String MSG_CHAMPS_OBLIGATOIRES = "Tous les champs sont obligatoires";
 	private static final String MSG_MDP_INCOHERENTS = "Mot de passe incohérent avec la confirmation";
 
@@ -68,6 +67,7 @@ public class InscriptionServlet extends HttpServlet {
 		// Creation nouvel Utilisateur
 		newUtilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,
 				credit, administrateur);
+		int userId = -1;
 
 		// Appel au manager si mdp = confirmation ET champs non vides
 		UserManager userMng = UserManager.getInstance();
@@ -77,13 +77,15 @@ public class InscriptionServlet extends HttpServlet {
 					&& !code_postal.isEmpty() && !email.isEmpty() && !mot_de_passe.isEmpty()
 					&& !confirmationMdp.isEmpty()) {
 				try {
-					userMng.creationUtilisateur(newUtilisateur);
+					userId = userMng.creationUtilisateur(newUtilisateur);
 				} catch (BLLException e) {
 					e.printStackTrace();
 				}
-				// Redirection vers page utilisateur
-				RequestDispatcher rd = request.getRequestDispatcher(PAGE_USER_CONNECTED);
-				rd.forward(request, response);
+				// Creation de session avec utilisateur cree en attribut + redirection vers page accueil "connectee"
+				newUtilisateur.setNo_utilisateur(userId);
+				request.getSession().setAttribute("utilisateur", newUtilisateur);
+				getServletContext().getRequestDispatcher("/encheres").forward(request, response);
+
 			} else {
 				// MSG ERREUR "tt. les champs sont obligatoires"
 				String message = MSG_CHAMPS_OBLIGATOIRES;

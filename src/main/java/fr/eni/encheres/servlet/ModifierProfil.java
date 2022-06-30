@@ -31,7 +31,10 @@ public class ModifierProfil extends HttpServlet {
 //		if(choixUtilisateur.equals("Supprimer mon compte")) {
 //			request.getSession().getAttribute("utilisateur");
 //			System.out.println(utilisateur.toString());
-		int numeroUtilisateur = Integer.valueOf(request.getParameter("no_utilisateur"));
+		System.out.println("Passage ds. la servlet");
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		
+		int numeroUtilisateur = utilisateur.getNo_utilisateur();
 		// System.out.println(no_utilisateur);
 		UserManager userMng = UserManager.getInstance();
 		try {
