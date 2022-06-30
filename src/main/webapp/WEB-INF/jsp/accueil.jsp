@@ -178,31 +178,24 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 
 
 		<div class="d-flex justify-content-around">
-			<div class="card" style="width: 18rem;">
-				<div class="card-body ">
-					<img class="card-img-top"
-						src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
-						alt="Card image cap">
-					<h5 class="card-title mt-2">Pc Gamer pour travailler</h5>
-					<div>Prix : 210 points</div>
-					<p class="card-text">Fin de l'enchère : 10/08/2018</p>
-					<p class="card-text">Vendeur : jojo44</p>
+			<c:if test="${ ! empty listeArticle }">
+				<c:forEach var="article" items="${ listeArticle }">
 
-				</div>
-			</div>
+					<div class="card" style="width: 18rem;">
+						<div class="card-body ">
+							<img class="card-img-top"
+								src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
+								alt="Card image cap">
+							<h5 class="card-title mt-2">Pc Gamer pour travailler</h5>
+							<div>Prix : 210 points</div>
+							<p class="card-text">Fin de l'enchère : 10/08/2018</p>
+							<p class="card-text">Vendeur : jojo44</p>
 
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<img class="card-img-top"
-						src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
-						alt="Card image cap">
-					<h5 class="card-title mt-2">Rocket stove pour riz et pâtes</h5>
-					<div>Prix : 185 points</div>
-					<p class="card-text">Fin de l'enchère : 09/10/2018</p>
-					<p class="card-text">Vendeur : NineJea</p>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
 
-				</div>
-			</div>
 		</div>
 
 	</div>

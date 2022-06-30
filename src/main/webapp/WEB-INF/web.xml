@@ -25,7 +25,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/LoginServlet</url-pattern>
+ 		<url-pattern>/LoginServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -78,6 +78,15 @@
 	
 	<!-- MODIF_PROFIL -->	
 	<servlet>
+		<servlet-name>ModifierProfil</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.ModifierProfil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifierProfil</servlet-name>
+		<url-pattern>/ModifierProfil</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>modif_profil</servlet-name>
 		<jsp-file>/WEB-INF/jsp/modif_profil.jsp</jsp-file>
 	</servlet>
@@ -96,4 +105,9 @@
 		<url-pattern>/vente_article</url-pattern>
 	</servlet-mapping>
 
+	<!-- DEFINITION DUREE DES SESSIONS DE L APPLICATION (MIN) -->
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+	
 </web-app>
