@@ -85,15 +85,13 @@ public class InscriptionServlet extends HttpServlet {
 				// Redirection vers page utilisateur
 				RequestDispatcher rd = request.getRequestDispatcher(PAGE_USER_CONNECTED);
 				rd.forward(request, response);
-			}
-			else {
+			} else {
 				// MSG ERREUR "tt. les champs sont obligatoires"
 				String message = MSG_CHAMPS_OBLIGATOIRES;
 				request.setAttribute("message", message);
 				getServletContext().getRequestDispatcher("/inscription").forward(request, response);
 			}
-		}
-		else {
+		} else {
 			// MSG ERREUR "Mot de passe incoherent avec la confirmation"
 			String message = MSG_MDP_INCOHERENTS;
 			request.setAttribute("message", message);
