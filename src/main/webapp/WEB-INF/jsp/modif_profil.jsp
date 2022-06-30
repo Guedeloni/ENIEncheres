@@ -107,13 +107,13 @@
 					<div class="form-group mt-3">
 						<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
 							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe" value="${utilisateur.mot_de_passe}">
+							name="nouveau_mdp" value="${utilisateur.mot_de_passe}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="confirmation mot de passe">Confirmation</label> <input
 							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe" value="${utilisateur.mot_de_passe}">
+							name="confirmation_mdp" value="${utilisateur.mot_de_passe}">
 					</div>
 				</div>
 
@@ -136,6 +136,13 @@
 			</div>
 
 		</form>
+
+		<div>
+			<c:if test="${ requestScope.message != '' }">
+				<p>${ requestScope.message }</p>
+			</c:if>
+		</div>
+		
 	</div>
 
 </body>
