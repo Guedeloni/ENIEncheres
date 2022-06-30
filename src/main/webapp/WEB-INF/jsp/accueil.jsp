@@ -174,7 +174,10 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 
 
 
-		<div class="d-flex justify-content-around">
+		<div class="d-flex justify-content-around">	
+		<c:if test="${ ! empty listeArticle }">
+		<c:forEach var="article" items="${ listeArticle }" >
+		
 			<div class="card" style="width: 18rem;">
 				<div class="card-body ">
 					<img class="card-img-top"
@@ -187,7 +190,8 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 
 				</div>
 			</div>
-
+			</c:forEach>
+			</c:if>
 			<div class="card" style="width: 18rem;">
 				<div class="card-body">
 					<img class="card-img-top"

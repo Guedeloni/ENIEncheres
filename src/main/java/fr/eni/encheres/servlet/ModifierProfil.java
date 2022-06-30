@@ -35,7 +35,7 @@ public class ModifierProfil extends HttpServlet {
 		
 		
 		utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-		//request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/modif_profil.jsp").forward(request, response);
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -103,9 +103,9 @@ public class ModifierProfil extends HttpServlet {
 			}
 		}
 			
+		
 			
-			
-		doGet(request, response);
+		//doGet(request, response);
 	}
-
+	
 }

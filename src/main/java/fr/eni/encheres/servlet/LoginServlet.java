@@ -28,8 +28,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession(true) != null) request.getSession().invalidate();
-		request.getRequestDispatcher("/encheres").forward(request, response);
+
 	}
 
 	/**
@@ -43,28 +42,41 @@ public class LoginServlet extends HttpServlet {
 		// recuperer les infos de connexion saisies par l'utilisateur
 		String pseudoInput = request.getParameter("pseudoInput");
 		String mdpInput = request.getParameter("mdpInput");
+//				String choixUtilisateur = request.getParameter("choixUtilisateur");
+
 		System.out.println("connexion" + pseudoInput + mdpInput);
 
-		// chercher ces logins dans la bdd pour voir s'ils existent ou non
-		Utilisateur utilisateur = new Utilisateur();
-		try {
-			utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-		if (utilisateur == null) {
-			System.out.println("non");
-			String message = MSG_NON_INSCRIT;
-			request.setAttribute("message", message);
-			getServletContext().getRequestDispatcher("/login").forward(request, response);
+//		if (choixUtilisateur.equals("connexion")) {
+			// chercher ces logins dans la bdd pour voir s'ils existent ou non
+			Utilisateur utilisateur = new Utilisateur();
+			try {
+				utilisateur = userMng.utilisateurReconnu(pseudoInput, mdpInput);
+			} catch (BLLException e) {
 
-		} else {
-			// Ouverture de session et renvoi a la page uutilisateur-encheres
-			System.out.println("oui");
-			request.getSession().setAttribute("utilisateur", utilisateur);
-			request.getRequestDispatcher("/encheres").forward(request, response);
-			;
-		}
+				e.printStackTrace();
+			}
+			if (utilisateur == null) {
+				System.out.println("non");
+				String message = MSG_NON_INSCRIT;
+				request.setAttribute("message", message);
+//						doGet(request, response);
+				getServletContext().getRequestDispatcher("/login").forward(request, response);
+				;
+
+			} else {
+				// Ouverture de session et renvoi a la page utilisateur-encheres
+				System.out.println("oui");
+				request.getSession().setAttribute("utilisateur", utilisateur);
+				
+//					response.sendRedirect("/WEB-INF/jsp/encheres");
+				request.getRequestDispatcher("/user_connected").forward(request, response);
+				
+			}
+//		}
+
+//		if (choixUtilisateur.equals("creer un compte")) {
+//			response.sendRedirect("/inscription");
+//		}
 
 	}
 }

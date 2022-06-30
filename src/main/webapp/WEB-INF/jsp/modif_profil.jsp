@@ -43,42 +43,43 @@
 			<div
 				class="d-flex justify-content-around align-items-center w-50 p-3">
 				<div>
+				
 					<div class="form-group">
 						<label for="Pseudo">Pseudo</label> <input type="text"
 							class="form-control" id="pseudo" aria-describedby="pseudo"
-							placeholder="votre pseudo" name="pseudo" value="${param.pseudo}">
+							placeholder="votre pseudo" name="pseudo" value="${utilisateur.pseudo}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="nom">Nom</label> <input type="text"
 							class="form-control" id="nom" placeholder="Doe" name="nom"
-							value="${param.nom}">
+							value="${utilisateur.nom}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="prénom">Prénom</label> <input type="text"
 							class="form-control" id="prenom" placeholder="John" name="prenom"
-							value="${param.prenom}">
+							value="${utilisateur.prenom}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="email">Email</label> <input type="email"
 							class="form-control" id="email" aria-describedby="email"
 							placeholder="john-doe@gmail.com" name="email"
-							value="${param.email}">
+							value="${utilisateur.email}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="telephone">Téléphone</label> <input type="text"
 							class="form-control" id="telephone" aria-describedby="telephone"
 							placeholder="06 12 39 84 52" name="telephone"
-							value="${param.telephone}">
+							value="${utilisateur.telephone}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="rue">Rue</label> <input type="text"
 							class="form-control" id="rue" placeholder="12 rue de l'Eni"
-							name="rue" value="${param.rue}">
+							name="rue" value="${utilisateur.rue}">
 					</div>
 
 				</div>
@@ -87,19 +88,19 @@
 					<div class="form-group mt-3">
 						<label for="code_postal">Code postal</label> <input type="text"
 							class="form-control" id="code_postal" placeholder="44000"
-							name="code_postal" value="${param.code_postal}">
+							name="code_postal" value="${utilisateur.code_postal}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="ville">Ville</label> <input type="text"
 							class="form-control" id="ville" placeholder="Nantes" name="ville"
-							value="${param.ville}">
+							value="${utilisateur.ville}">
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="Mot de passe actuel">Mot de passe actuel</label> <input
 							type="password" class="form-control" id="mot_de_passe"
-							name="mot_de_passe" value="${param.mot_de_passe}">
+							name="mot_de_passe" value="${utilisateur.mot_de_passe}">
 					</div>
 				
 					<c:choose>

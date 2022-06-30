@@ -98,4 +98,6 @@ public class Article {
 		this.prix_vente = prix_vente;
 	}
 
+	
+
 }

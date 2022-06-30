@@ -60,6 +60,9 @@ public class UserManager {
 			throw new BLLException("Problème à la création d'un nouvel utilisateur", e);
 		}
 	}
+	
+	
+	//
 
 	public void updateProfil(Utilisateur utilisateur) throws BLLException {
 
