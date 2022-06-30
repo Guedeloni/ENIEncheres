@@ -51,7 +51,7 @@
 			<c:if test="${! empty utilisateur.pseudo }">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					
+
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="<c:url value="/liste-encheres" />">Enchères</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -86,14 +86,17 @@
 		<div class="input-group mb-3 w-50 p-3">
 			<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
 			<select class="form-select" id="catégories">
-				<option selected>Toutes</option>
-				<option value="1">Ameublement</option>
-				<option value="2">Vêtements</option>
-				<option value="3">Sport & Loisirs</option>
+				<c:if test="${ ! empty listeCategorie }">
+					<c:forEach var="categorie" items="${ listeCategorie }">
+						<option selected>Toutes</option>
+						<option value="${categorie.libelle }">${categorie.libelle }</option>
+					</c:forEach>
+				</c:if>
 			</select>
+
 		</div>
 
-		
+
 		<!-- TODO faire une fonction Javascript qui permettra de mettre en disabled les inputs selon
 qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque fois la page  -->
 
