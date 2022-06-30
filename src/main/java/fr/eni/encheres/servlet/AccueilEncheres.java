@@ -36,6 +36,10 @@ public class AccueilEncheres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		System.out.println("passage dans la servlet");
+
+		//************************ Articles ************************ /
+
 		ArticleManager articleMng = ArticleManager.getInstance();
 
 		List<Article> articlesVendus = new ArrayList<>();
@@ -47,17 +51,23 @@ public class AccueilEncheres extends HttpServlet {
 		}
 
 		// request.getSession().getAttribute("artilce");.
-		request.setAttribute("article", articlesVendus);
+		request.setAttribute("listeArticle", articlesVendus);
 
+		//************************ Catégories ************************ /
+		CategorieManager catMng = CategorieManager.getInstance();
+		
 		List<Categorie> allCategories = new ArrayList<>();
+		
+		System.out.println("CATEGORIES => passage dans la servlet");
+
 		try {
-			allCategories = CategorieManager.getAllCategories();
+			allCategories = catMng.getAllCategories();
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		request.setAttribute("categorie", allCategories);
+		request.setAttribute("listeCategorie", allCategories);
 
 		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL_JSP);
 		rd.forward(request, response);

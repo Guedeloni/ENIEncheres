@@ -191,7 +191,9 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 							<div>Prix : ${article.prix_initial } points</div>
 							<p class="card-text">Fin de l'enchère :
 								${article.date_fin_encheres }</p>
-							<p class="card-text">Vendeur : ${article.pseudo }</p>
+
+							<!-- TODO => créer un article avec un utilisateur pour puvoir récupérer le pseudo sinon null -->
+							<%-- 	<p class="card-text">Vendeur : ${article.pseudo }</p> --%>
 
 						</div>
 					</div>

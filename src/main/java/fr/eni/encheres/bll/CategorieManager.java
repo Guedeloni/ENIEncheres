@@ -1,5 +1,6 @@
 package fr.eni.encheres.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Categorie;
@@ -19,24 +20,14 @@ public class CategorieManager {
 		return instance;
 	}
 
-	public static List<Categorie> getAllCategories() throws BLLException {
+	public List<Categorie> getAllCategories() throws BLLException {
 		try {
 			return dao.selectAllCategories();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<Categorie>();
 	}
-	
-
-//	public Categorie categorieReconnu(String libelle) throws BLLException {
-//		Categorie categorieTrouve = (Categorie) dao.selectAllCAtegories(libelle);
-//		if (categorieTrouve != null) {
-//			return categorieTrouve;
-//		}
-//		;
-//		return null;
-//	}
 
 }
