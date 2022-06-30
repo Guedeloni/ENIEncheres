@@ -85,5 +85,15 @@
 		<servlet-name>modif_profil</servlet-name>
 		<url-pattern>/modif_profil</url-pattern>
 	</servlet-mapping>
+	
+	<!-- VENTE_ARTICLE -->	
+	<servlet>
+		<servlet-name>vente_article</servlet-name>
+		<jsp-file>/WEB-INF/jsp/vente_article.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>vente_article</servlet-name>
+		<url-pattern>/vente_article</url-pattern>
+	</servlet-mapping>
 
 </web-app>

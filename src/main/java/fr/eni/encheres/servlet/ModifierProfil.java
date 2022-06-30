@@ -14,7 +14,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ModifierProfil
  */
-@WebServlet(name = "ModifProfil", urlPatterns = { "/ModiferProfil" })
+
 public class ModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Utilisateur utilisateur;
