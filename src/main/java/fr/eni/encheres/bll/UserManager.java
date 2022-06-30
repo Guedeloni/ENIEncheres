@@ -42,19 +42,22 @@ public class UserManager {
 	}
 
 	/**
-	 * creationUtilisateur(utilisateur) Appel la DAO avec un utilisateur pour
-	 * création
-	 * 
-	 * @param Utilisateur utilisateur
+	 * creationUtilisateur(utilisateur)
+	 * Appel la DAO pour creation d'un utilisateur
+	 * Renvoi l'identifiant genere
+	 * @param	Utilisateur
+	 * @return	Integer
 	 * @throws BLLException
 	 */
-	public void creationUtilisateur(Utilisateur utilisateur) throws BLLException {
+	public int creationUtilisateur(Utilisateur utilisateur) throws BLLException {
+		int userId = 0;
 		try {
-			dao.insert(utilisateur);
+			userId = dao.insert(utilisateur);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException("Problème à la création d'un nouvel utilisateur", e);
 		}
+		return userId;
 	}
 	
 	
