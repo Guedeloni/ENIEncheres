@@ -7,7 +7,7 @@ import fr.eni.encheres.dal.dao.CategorieDAOJdbcImpl;
 
 public class CategorieManager {
 	private static CategorieManager instance;
-	private CategorieDAOJdbcImpl dao;
+	private static CategorieDAOJdbcImpl dao;
 
 	private CategorieManager() {
 		dao = new CategorieDAOJdbcImpl();
@@ -19,8 +19,14 @@ public class CategorieManager {
 		return instance;
 	}
 
-	public List<Categorie> getAllCategories() throws BLLException {
-		return dao.selectAllCategories();
+	public static List<Categorie> getAllCategories() throws BLLException {
+		try {
+			return dao.selectAllCategories();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 

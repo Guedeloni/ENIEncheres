@@ -35,7 +35,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<!-- liens connexion -->
+			<%-- Si l' utilisateur n'est pas connecté  --%>
 			<c:if test="${empty utilisateur.pseudo }">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -48,6 +48,7 @@
 				</div>
 			</c:if>
 
+			<%-- Si l' utilisateur est connecté  --%>
 			<c:if test="${! empty utilisateur.pseudo }">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -89,7 +90,7 @@
 				<c:if test="${ ! empty listeCategorie }">
 					<c:forEach var="categorie" items="${ listeCategorie }">
 						<option selected>Toutes</option>
-						<option value="${categorie.libelle }">${categorie.libelle }</option>
+						<option value="${categorie.no_categorie }">${categorie.libelle }</option>
 					</c:forEach>
 				</c:if>
 			</select>
@@ -186,10 +187,11 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 							<img class="card-img-top"
 								src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
 								alt="Card image cap">
-							<h5 class="card-title mt-2">Pc Gamer pour travailler</h5>
-							<div>Prix : 210 points</div>
-							<p class="card-text">Fin de l'enchère : 10/08/2018</p>
-							<p class="card-text">Vendeur : jojo44</p>
+							<h5 class="card-title mt-2">${article.nom_article }</h5>
+							<div>Prix : ${article.prix_initial } points</div>
+							<p class="card-text">Fin de l'enchère :
+								${article.date_fin_encheres }</p>
+							<p class="card-text">Vendeur : ${article.pseudo }</p>
 
 						</div>
 					</div>

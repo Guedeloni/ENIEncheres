@@ -29,10 +29,10 @@ public class CategorieDAOJdbcImpl {
 				int id_categorie = rs.getInt("no_categorie");
 				String libelleCat = rs.getString("libelle");
 
-				Categorie categorie = new Categorie(id_categorie, libelleCat);
+				Categorie categories = new Categorie(id_categorie, libelleCat);
 
-				listeCategorie.add(categorie);
-				System.out.println("catégories" + categorie);
+				listeCategorie.add(categories);
+				System.out.println("catégories" + categories);
 				System.out.println("liste catégories" + listeCategorie);
 			}
 
