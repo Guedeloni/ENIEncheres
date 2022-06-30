@@ -61,6 +61,7 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			// Ouverture de session et renvoi a la page uutilisateur-encheres
 			System.out.println("oui");
+			System.out.println(utilisateur.toString());
 			request.getSession().setAttribute("utilisateur", utilisateur);
 			request.getRequestDispatcher("/encheres").forward(request, response);
 			;

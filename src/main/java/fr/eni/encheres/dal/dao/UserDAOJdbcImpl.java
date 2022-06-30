@@ -216,7 +216,7 @@ public class UserDAOJdbcImpl {
 	private Utilisateur userBuilder(ResultSet ligneResultante) throws DALException {
 		Utilisateur user = null;
 		try {
-			user = new Utilisateur(ligneResultante.getString(2), ligneResultante.getString(3),
+			user = new Utilisateur(ligneResultante.getInt(1), ligneResultante.getString(2), ligneResultante.getString(3),
 					ligneResultante.getString(4), ligneResultante.getString(5), ligneResultante.getString(6),
 					ligneResultante.getString(7), ligneResultante.getString(8), ligneResultante.getString(9),
 					ligneResultante.getString(10), ligneResultante.getInt(11), ligneResultante.getInt(12));

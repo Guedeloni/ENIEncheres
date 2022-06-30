@@ -54,7 +54,6 @@ public class ModifierProfil extends HttpServlet {
 		// Recuperation des donnees de la session en cours
 		System.out.println(request.getSession().getAttribute("utilisateur").toString());
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-		int no_utilisateur = utilisateur.getNo_utilisateur();
 		
 		// Recuperation des valeurs du formulaire
 			
@@ -70,41 +69,42 @@ public class ModifierProfil extends HttpServlet {
 			String nouveauMdp = request.getParameter("nouveau_mdp");
 			String confirmationMdp = request.getParameter("confirmation_mdp");
 
-			Utilisateur utilisateurAModifier = new Utilisateur(no_utilisateur, pseudo, nom, prenom, email, telephone,
-																rue, code_postal, ville, mot_de_passe);
+			Utilisateur utilisateurModifie = new Utilisateur(utilisateur.getNo_utilisateur(),
+														pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,
+														utilisateur.getCredit(), utilisateur.getAdministrateur(),
+														utilisateur.getArticlesvendu(), utilisateur.getArticlesachete());
 			
 			UserManager userMng = UserManager.getInstance();
+			String message = "";
 			// Verification de coherence entre MdP du formulaire et MdP de l'utilisateur de la session
-			if (mot_de_passe.equals(utilisateur.getMot_de_passe())) {
-
-				// Verification de coherence pour le nouveau MdP
-				if (nouveauMdp.equals(confirmationMdp)) {
-					
-					try {userMng.updateProfil(utilisateurAModifier);}
-					catch (BLLException e) {
-						e.printStackTrace();
-					}
-					
-//					request.getSession().setAttribute("utilisateur", utilisateur);
-					String message = MSG_PROFIL_MODIFIE;
-					request.setAttribute("message", message);
-					getServletContext().getRequestDispatcher("/modif_profil").forward(request, response);
-					
-				}
-				// En cas d'erreur => retour au formulaire avec msg d'erreur + reaffichage des valeurs saisies
-				request.getSession().setAttribute("utilisateur", utilisateur);
-				String message = MSG_COHERENCE_NEW_MDP;
-				request.setAttribute("message", message);
-				getServletContext().getRequestDispatcher("/modif_profil").forward(request, response);
-				
-				
+			if (! mot_de_passe.equals(utilisateur.getMot_de_passe())) {
+				message = MSG_ERREUR_MDP;
 			}
-			// En cas d'erreur => retour au formulaire avec msg d'erreur + reaffichage des valeurs saisies
-			request.getSession().setAttribute("utilisateur", utilisateur);
-			String message = MSG_ERREUR_MDP;
+
+			// Verification de coherence pour le nouveau MdP
+			if (! nouveauMdp.equals(confirmationMdp)) {
+				message = MSG_COHERENCE_NEW_MDP;
+			}
+
+			if (mot_de_passe.equals(utilisateur.getMot_de_passe())
+				&& nouveauMdp.equals(confirmationMdp)
+				) {
+				
+				try {
+					userMng.updateProfil(utilisateurModifie);
+					message = MSG_PROFIL_MODIFIE;
+				}
+				catch (BLLException e) {
+					e.printStackTrace();
+				}
+
+			}
+			
+			// Modification de l'utilisateur en cours de session (reaffichage des valeurs saisies)
+			request.getSession().setAttribute("utilisateur", utilisateurModifie);
 			request.setAttribute("message", message);
 			getServletContext().getRequestDispatcher("/modif_profil").forward(request, response);
-				
+
 	}
 
 }

@@ -39,22 +39,6 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {
-//		super();
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.code_postal = code_postal;
-		this.ville = ville;
-		this.mot_de_passe = mot_de_passe;
-		this.credit = credit;
-		this.administrateur = administrateur;
-	}
-
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe) {
 		this.no_utilisateur = no_utilisateur;
@@ -69,12 +53,17 @@ public class Utilisateur {
 		this.mot_de_passe = mot_de_passe;
 	}
 
+	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {
+		this(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
+		this.credit = credit;
+		this.administrateur = administrateur;
+	}
 
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, int credit, int administrateur,
 			List<Article> articlesvendu, List<Article> articlesachete) {
-		this(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
-		this.no_utilisateur = no_utilisateur;
+		this(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
 		this.articlesvendu = articlesvendu;
 		this.articlesachete = articlesachete;
 	}
