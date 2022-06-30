@@ -6,14 +6,12 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.UserManager;
 import fr.eni.encheres.bo.Article;
 
 /**
@@ -23,17 +21,17 @@ public class AccueilEncheres extends HttpServlet {
 	private static final String PAGE_ACCUEIL_JSP = "/WEB-INF/jsp/accueil.jsp";
 	private static final long serialVersionUID = 1L;
 
-	
-	
 	private int categories;
 	private String searchBar;
 	private String achatsVentes;
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		ArticleManager articleMng = ArticleManager.getInstance();
 
 		/*
@@ -43,40 +41,33 @@ public class AccueilEncheres extends HttpServlet {
 		 * exigences
 		 */
 
-		
-			List<Article> articlesVendus = new ArrayList<>();
-			try {
-				articlesVendus = articleMng.afficherArticle();
-			} catch (BLLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-		
+		List<Article> articlesVendus = new ArrayList<>();
+		try {
+			articlesVendus = articleMng.afficherArticle();
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		//request.getSession().getAttribute("artilce");.
+		// request.getSession().getAttribute("artilce");.
 		request.setAttribute("article", articlesVendus);
-		
 
 		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL_JSP);
 		rd.forward(request, response);
 
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	//Valeur saisie dans la barre de recherche
-	searchBar = request.getParameter("searchBar").toLowerCase();
-	//Valeur de la catégorie choisi
-	categories = Integer.parseInt(request.getParameter("categories"));
-	
-	
-	
-	request.setAttribute("categories", categories);
-	request.setAttribute("searchBar", searchBar);
-	doGet(request, response);
-	
-	
+		// Valeur saisie dans la barre de recherche
+		searchBar = request.getParameter("searchBar").toLowerCase();
+		// Valeur de la catégorie choisi
+		categories = Integer.parseInt(request.getParameter("categories"));
+
+		request.setAttribute("categories", categories);
+		request.setAttribute("searchBar", searchBar);
+		doGet(request, response);
+
 	}
-	
+
 }

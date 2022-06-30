@@ -30,17 +30,17 @@ public class Utilisateur {
 
 	private int administrateur = 0;
 
-	private List<Article> articlesvendu;	// attribut de relation
+	private List<Article> articlesvendu; // attribut de relation
 
-	private List<Article> articlesachete;	// attribut de relation
+	private List<Article> articlesachete; // attribut de relation
 
 	// constructeur
 
 	public Utilisateur() {
 	}
 
-	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String code_postal, String ville, String mot_de_passe) {
+	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String mot_de_passe) {
 		this.no_utilisateur = no_utilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -53,8 +53,8 @@ public class Utilisateur {
 		this.mot_de_passe = mot_de_passe;
 	}
 
-	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {
+	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {
 		this(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 		this.credit = credit;
 		this.administrateur = administrateur;
@@ -63,13 +63,15 @@ public class Utilisateur {
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, int credit, int administrateur,
 			List<Article> articlesvendu, List<Article> articlesachete) {
-		this(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
+		this(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit,
+				administrateur);
 		this.articlesvendu = articlesvendu;
 		this.articlesachete = articlesachete;
 	}
 
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {
+
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -82,8 +84,6 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-
-
 
 	// getters et setter
 	public int getNo_utilisateur() {
@@ -211,8 +211,6 @@ public class Utilisateur {
 	}
 
 }
-
-
 
 //package fr.eni.encheres.bo;
 //
