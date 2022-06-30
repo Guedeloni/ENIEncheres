@@ -43,26 +43,21 @@
 			<div
 				class="d-flex justify-content-around align-items-center w-50 p-3">
 				<div>
-				
+
 					<div class="form-group">
 						<label for="Pseudo">Pseudo</label> <input type="text"
 							class="form-control" id="pseudo" aria-describedby="pseudo"
-<<<<<<< HEAD
-							placeholder="votre pseudo" name="pseudo" value="${utilisateur.pseudo}">
-=======
 							placeholder="votre pseudo" name="pseudo"
 							value="${utilisateur.pseudo}">
->>>>>>> cec45dcb9f53e9f81f3cd795cae731c721c72a61
+
+
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="nom">Nom</label> <input type="text"
 							class="form-control" id="nom" placeholder="Doe" name="nom"
-<<<<<<< HEAD
 							value="${utilisateur.nom}">
-=======
-							value="${utilisateur.nom }">
->>>>>>> cec45dcb9f53e9f81f3cd795cae731c721c72a61
+
 					</div>
 
 					<div class="form-group mt-3">
@@ -151,7 +146,7 @@
 				<p>${ requestScope.message }</p>
 			</c:if>
 		</div>
-		
+
 	</div>
 
 </body>
