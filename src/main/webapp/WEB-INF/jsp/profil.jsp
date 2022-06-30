@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
@@ -27,6 +26,7 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 <h1>Mon profil </h1>
 
 <div>Pseudo : ${utilisateur.pseudo }</div>
@@ -45,5 +45,36 @@
 		</a>
 	</div>
 
+=======
+<%-- 	<c:if test="${ request.getSession(false) != null }"> --%>
+
+		<h1>Mon profil </h1>
+		
+		<div>Pseudo : ${utilisateur.pseudo }</div>
+		<div>Nom  : ${utilisateur.nom }</div>
+		<div>Prénom : ${utilisateur. prenom }</div>
+		<div>Email : ${utilisateur.email }</div>
+		<div>Telèphone : ${utilisateur.telephone }</div>
+		<div>Rue : ${utilisateur.rue }</div>
+		<div>Code postal : ${utilisateur.code_postal }</div>
+		<div>Ville : ${utilisateur. ville}</div>
+		
+		
+		<div class="contenu">
+			<a href="<c:url value="/modif_profil" />">
+				<input type="submit" value="Modifier" />
+			</a>
+		</div>
+	<%-- </c:if> --%>
+	
+<%-- 	<c:if test="${ request.getSession(false) = null }">
+		<h1>Pas de session en cours</h1>	
+		<div class="contenu">
+			<a href="<c:url value="/encheres" />">
+				<input type="submit" value="Retour à l'accueil" />
+			</a>
+		</div>
+	</c:if> --%>
+>>>>>>> cec45dcb9f53e9f81f3cd795cae731c721c72a61
 </body>
 </html>

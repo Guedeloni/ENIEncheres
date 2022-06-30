@@ -33,10 +33,7 @@ public class UserManager {
 	public Utilisateur utilisateurReconnu(String pseudo, String MdP) throws BLLException {
 		try {
 			Utilisateur utilisateurTrouve = dao.selectUserByPseudoMdP(pseudo, MdP);
-			if (utilisateurTrouve != null) {
-				return utilisateurTrouve;
-			}
-			;
+			if (utilisateurTrouve != null) return utilisateurTrouve;
 			return null;
 		} catch (DALException e) {
 			e.printStackTrace();
@@ -52,7 +49,6 @@ public class UserManager {
 	 * @throws BLLException
 	 */
 	public void creationUtilisateur(Utilisateur utilisateur) throws BLLException {
-		System.out.println("Passage ds. BLL");
 		try {
 			dao.insert(utilisateur);
 		} catch (DALException e) {
@@ -65,26 +61,24 @@ public class UserManager {
 	//
 
 	public void updateProfil(Utilisateur utilisateur) throws BLLException {
-
+		System.out.println("Passage ds. BLL");
 		try {
 			dao.updateProfil(utilisateur);
-		} catch (Exception e) {
-
+		} catch (DALException e) {
 			e.printStackTrace();
+			throw new BLLException("Problème à la mise à jour d'un utilisateur", e);
 		}
 
 	}
 
-	public void removeUser(int no_utilisateur) {
-		
-		
-			try {
-				dao.removeUser(no_utilisateur);
-			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+	public void removeUser(int no_utilisateur) throws BLLException {
+		System.out.println("Passage ds. BLL");
+		try {
+			dao.removeUser(no_utilisateur);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException("Problème à la suppression d'un utilisateur", e);
+		}
 		
 	}
 }

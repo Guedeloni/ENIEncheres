@@ -85,7 +85,7 @@
 
 		<div class="input-group mb-3 w-50 p-3">
 			<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
-			<select class="form-select" id="inputGroupSelect01">
+			<select class="form-select" id="catégories">
 				<option selected>Toutes</option>
 				<option value="1">Ameublement</option>
 				<option value="2">Vêtements</option>

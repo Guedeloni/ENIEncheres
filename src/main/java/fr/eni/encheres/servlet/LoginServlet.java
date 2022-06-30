@@ -74,9 +74,20 @@ public class LoginServlet extends HttpServlet {
 			}
 //		}
 
+<<<<<<< HEAD
 //		if (choixUtilisateur.equals("creer un compte")) {
 //			response.sendRedirect("/inscription");
 //		}
+=======
+		} else {
+			// Ouverture de session et renvoi a la page uutilisateur-encheres
+			System.out.println("oui");
+			System.out.println(utilisateur.toString());
+			request.getSession().setAttribute("utilisateur", utilisateur);
+			request.getRequestDispatcher("/encheres").forward(request, response);
+			;
+		}
+>>>>>>> cec45dcb9f53e9f81f3cd795cae731c721c72a61
 
 	}
 }

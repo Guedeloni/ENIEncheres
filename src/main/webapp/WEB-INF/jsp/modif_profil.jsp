@@ -38,7 +38,7 @@
 		<h2>Mon Profil</h2>
 
 		<form method="post"
-			action="${pageContext.request.contextPath}/InscriptionServlet">
+			action="${pageContext.request.contextPath}/ModifierProfil">
 
 			<div
 				class="d-flex justify-content-around align-items-center w-50 p-3">
@@ -47,13 +47,22 @@
 					<div class="form-group">
 						<label for="Pseudo">Pseudo</label> <input type="text"
 							class="form-control" id="pseudo" aria-describedby="pseudo"
+<<<<<<< HEAD
 							placeholder="votre pseudo" name="pseudo" value="${utilisateur.pseudo}">
+=======
+							placeholder="votre pseudo" name="pseudo"
+							value="${utilisateur.pseudo}">
+>>>>>>> cec45dcb9f53e9f81f3cd795cae731c721c72a61
 					</div>
 
 					<div class="form-group mt-3">
 						<label for="nom">Nom</label> <input type="text"
 							class="form-control" id="nom" placeholder="Doe" name="nom"
+<<<<<<< HEAD
 							value="${utilisateur.nom}">
+=======
+							value="${utilisateur.nom }">
+>>>>>>> cec45dcb9f53e9f81f3cd795cae731c721c72a61
 					</div>
 
 					<div class="form-group mt-3">
@@ -102,45 +111,25 @@
 							type="password" class="form-control" id="mot_de_passe"
 							name="mot_de_passe" value="${utilisateur.mot_de_passe}">
 					</div>
-				
-					<c:choose>
-						<c:when test="${activedInput}">
-							<div class="form-group mt-3">
-								<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
-									type="password" class="form-control" id="mot_de_passe"
-									name="mot_de_passe" value="${param.mot_de_passe}">
-							</div>
-
-							<div class="form-group mt-3">
-								<label for="confirmation mot de passe">Confirmation</label> <input
-									type="password" class="form-control" id="mot_de_passe"
-									name="mot_de_passe" value="${param.mot_de_passe}">
-							</div>
-						</c:when>
-						
-						<c:when test="${!activedInput}">
-							<div class="form-group mt-3">
-								<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
-									type="password" class="form-control" id="mot_de_passe"
-									name="mot_de_passe" value="${param.mot_de_passe}" disabled>
-							</div>
-
-							<div class="form-group mt-3">
-								<label for="confirmation mot de passe">Confirmation</label> <input
-									type="password" class="form-control" id="mot_de_passe"
-									name="mot_de_passe" value="${param.mot_de_passe}" disabled>
-							</div>
-						</c:when>
-					</c:choose>
 
 
+					<div class="form-group mt-3">
+						<label for="nouveau mot de passe">Nouveau mot de passe</label> <input
+							type="password" class="form-control" id="mot_de_passe"
+							name="nouveau_mdp" value="${utilisateur.mot_de_passe}">
+					</div>
 
+					<div class="form-group mt-3">
+						<label for="confirmation mot de passe">Confirmation</label> <input
+							type="password" class="form-control" id="mot_de_passe"
+							name="confirmation_mdp" value="${utilisateur.mot_de_passe}">
+					</div>
 				</div>
 
 			</div>
 
 			<div>
-				Crédit <span class="font-weight-bold">640</span>
+				Crédit <span class="font-weight-bold">${utilisateur.credit}</span>
 			</div>
 
 			<div class="d-flex justify-content-around w-25 mt-3">
@@ -156,6 +145,13 @@
 			</div>
 
 		</form>
+
+		<div>
+			<c:if test="${ requestScope.message != '' }">
+				<p>${ requestScope.message }</p>
+			</c:if>
+		</div>
+		
 	</div>
 
 </body>
