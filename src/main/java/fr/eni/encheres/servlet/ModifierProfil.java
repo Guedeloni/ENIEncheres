@@ -34,6 +34,7 @@ public class ModifierProfil extends HttpServlet {
 		int numeroUtilisateur = utilisateur.getNo_utilisateur();
 
 		UserManager userMng = UserManager.getInstance();
+
 		try {
 			userMng.removeUser(numeroUtilisateur);
 		} catch (BLLException e) {
@@ -82,6 +83,9 @@ public class ModifierProfil extends HttpServlet {
 
 		UserManager userMng = UserManager.getInstance();
 		String message = "";
+		String message_new_mdp = "";
+		String message_profil_modifie = "";
+		
 		// Verification de coherence entre MdP du formulaire et MdP de l'utilisateur de
 		// la session
 		if (!mot_de_passe.equals(utilisateur.getMot_de_passe())) {
@@ -90,14 +94,14 @@ public class ModifierProfil extends HttpServlet {
 
 		// Verification de coherence pour le nouveau MdP
 		if (!nouveauMdp.equals(confirmationMdp)) {
-			message = MSG_COHERENCE_NEW_MDP;
+			message_new_mdp = MSG_COHERENCE_NEW_MDP;
 		}
 
 		if (mot_de_passe.equals(utilisateur.getMot_de_passe()) && nouveauMdp.equals(confirmationMdp)) {
 
 			try {
 				userMng.updateProfil(utilisateurModifie);
-				message = MSG_PROFIL_MODIFIE;
+				message_profil_modifie = MSG_PROFIL_MODIFIE;
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
@@ -108,6 +112,8 @@ public class ModifierProfil extends HttpServlet {
 		// saisies)
 		request.getSession().setAttribute("utilisateur", utilisateurModifie);
 		request.setAttribute("message", message);
+		request.setAttribute("message_error", message_new_mdp);
+		request.setAttribute("message_profil_modifie", message_profil_modifie);
 		getServletContext().getRequestDispatcher("/modif_profil").forward(request, response);
 
 	}

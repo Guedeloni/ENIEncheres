@@ -17,7 +17,7 @@ import fr.eni.encheres.bo.Utilisateur;
 //@WebServlet(name = "login_page", urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String MSG_NON_INSCRIT = "Vous n'êtes pas inscrit";
+	private static final String MSG_NON_INSCRIT = "Vous n' êtes pas inscrit";
 
 	/**
 	 * doGet()

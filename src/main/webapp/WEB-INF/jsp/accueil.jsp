@@ -88,8 +88,8 @@
 			<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
 			<select class="form-select" id="catégories">
 				<c:if test="${ ! empty listeCategorie }">
+				<option selected>Toutes</option>
 					<c:forEach var="categorie" items="${ listeCategorie }">
-						<option selected>Toutes</option>
 						<option value="${categorie.no_categorie }">${categorie.libelle }</option>
 					</c:forEach>
 				</c:if>
@@ -193,7 +193,7 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 								${article.date_fin_encheres }</p>
 
 							<!-- TODO => créer un article avec un utilisateur pour puvoir récupérer le pseudo sinon null -->
-							<%-- 	<p class="card-text">Vendeur : ${article.pseudo }</p> --%>
+							 	<p class="card-text">Vendeur : ${article.utilisateur.pseudo }</p> 
 
 						</div>
 					</div>

@@ -36,7 +36,7 @@ public class AccueilEncheres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("passage dans la servlet");
+		System.out.println("teste servlet");
 
 		//************************ Articles ************************ /
 
@@ -48,10 +48,10 @@ public class AccueilEncheres extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("passage");
 		request.setAttribute("listeArticle", articlesVendus);
 
-		
+
 		//************************ Catégories ************************ /
 		CategorieManager catMng = CategorieManager.getInstance();
 		
@@ -62,14 +62,16 @@ public class AccueilEncheres extends HttpServlet {
 		try {
 			allCategories = catMng.getAllCategories();
 		} catch (BLLException e) {
+
 			e.printStackTrace();
 		}
 
 		request.setAttribute("listeCategorie", allCategories);
 
+
 		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL_JSP);
 		rd.forward(request, response);
-
+		System.out.println("allo");
 	}
 
 	

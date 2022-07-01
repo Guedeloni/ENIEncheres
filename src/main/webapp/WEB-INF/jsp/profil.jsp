@@ -47,6 +47,7 @@
 		<div class="mb-3"><span class="text-secondary">Code postal :</span> ${utilisateur.code_postal }</div>
 		<div class="mb-3"><span class="text-secondary">Ville :</span> ${utilisateur. ville}</div>
 
+
 		<div class="contenu">
 			<a href="<c:url value="/modif_profil" />"> <input type="submit"
 				value="Modifier" class="btn btn-primary" />
@@ -64,5 +65,6 @@
 			</a>
 		</div>
 	</c:if> --%>
+
 </body>
 </html>

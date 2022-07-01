@@ -123,11 +123,12 @@
 
 		</form>
 		
-		<div>
+		<div class="d-flex justify-content-around text-danger fs-5 fw-bold w-50 my-3">
 			<c:if test="${ requestScope.message != '' }">
 				<p>${ requestScope.message }</p>
 			</c:if>
 		</div>
+		
 	</div>
 
 </body>

@@ -142,9 +142,24 @@
 				mon compte</button>
 		</form>
 
-		<div>
+		<%--  TODO : condition ternaire ou Javascript onclick pour des Modals d' alert--%>
+		<%-- class="d-flex justify-content-around ${ requestScope.message != '' ? text-success : text-danger} fs-5 fw-bold w-50 my-3"> --%>
+		
+		<div class="d-flex justify-content-around text-danger fs-5 fw-bold w-50 my-3">
 			<c:if test="${ requestScope.message != '' }">
 				<p>${ requestScope.message }</p>
+			</c:if>
+		</div>
+		
+		<div class="d-flex justify-content-around text-danger fs-5 fw-bold w-50 my-3">
+			<c:if test="${ requestScope.message_error != '' }">
+				<p>${ requestScope.message_error }</p>
+			</c:if>
+		</div>
+		
+		<div class="d-flex justify-content-around text-success fs-5 fw-bold w-50 my-3">
+			<c:if test="${ requestScope.message_profil_modifie != '' }">
+				<p>${ requestScope.message_profil_modifie }</p>
 			</c:if>
 		</div>
 

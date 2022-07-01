@@ -20,9 +20,19 @@ public class Article {
 
 	private int no_categorie;			// implementation de l association unidirectionnel
 
+
 	private Utilisateur utilisateur;	// proprietaire de l'article
 
+
 	// constructeur
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 
 	public Article() {
 
