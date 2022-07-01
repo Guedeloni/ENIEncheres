@@ -54,6 +54,8 @@ public class ArticleDAOJdbcImpl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		 
+		 System.out.println(listeArticle.toString() );
 		return listeArticle;
 	}
 		

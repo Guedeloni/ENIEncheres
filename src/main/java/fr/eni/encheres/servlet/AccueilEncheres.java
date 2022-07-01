@@ -31,7 +31,7 @@ public class AccueilEncheres extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		System.out.println("passage ds la servlet");
 		ArticleManager articleMng = ArticleManager.getInstance();
 
 		/*
@@ -50,7 +50,7 @@ public class AccueilEncheres extends HttpServlet {
 		}
 
 		// request.getSession().getAttribute("artilce");.
-		request.setAttribute("article", articlesVendus);
+		request.setAttribute("listeArticle", articlesVendus);
 
 		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL_JSP);
 		rd.forward(request, response);
