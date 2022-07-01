@@ -11,7 +11,7 @@
 	<!-- ACCUEIL -->
 	<servlet>
 		<servlet-name>encheres</servlet-name>
-		<jsp-file>/WEB-INF/jsp/accueil.jsp</jsp-file>
+		<servlet-class>fr.eni.encheres.servlet.AccueilEncheres</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>encheres</servlet-name>
@@ -64,16 +64,6 @@
 	<servlet-mapping>
 		<servlet-name>profil</servlet-name>
 		<url-pattern>/profil</url-pattern>
-	</servlet-mapping>
-	
-	<!-- USER_CONNECTED -->
-	<servlet>
-		<servlet-name>user_connected</servlet-name>
-		<jsp-file>/WEB-INF/jsp/user_connected.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>user_connected</servlet-name>
-		<url-pattern>/user_connected</url-pattern>
 	</servlet-mapping>
 	
 	<!-- MODIF_PROFIL -->	

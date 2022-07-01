@@ -33,7 +33,7 @@
 
 	<div class="container-md">
 
-		<h2>Mon Profil</h2>
+		<h2>Creer mon Profil</h2>
 
 		<form method="post"
 			action="${pageContext.request.contextPath}/InscriptionServlet">
@@ -49,7 +49,7 @@
 
 					<div class="form-group mt-3">
 						<label for="nom">Nom</label> <input type="text"
-							class="form-control" id="nom" placeholder="Doe" name="nom">
+							class="form-control" id="nom" placeholder="Doe" name="nom" value="${param.nom}">
 					</div>
 
 					<div class="form-group mt-3">
@@ -106,10 +106,6 @@
 					</div>
 				</div>
 
-			</div>
-
-			<div>
-				Crédit <span class="font-weight-bold">640</span>
 			</div>
 
 			<div class="d-flex justify-content-around w-25 mt-3">
