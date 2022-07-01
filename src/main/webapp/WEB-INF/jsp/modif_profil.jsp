@@ -133,12 +133,13 @@
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
 				</div>
 
-				<div>
-					<button type="submit" class="btn btn-primary">Supprimer
-						mon compte</button>
-				</div>
 			</div>
 
+		</form>
+		
+		<form method="delete" action="${pageContext.request.contextPath}/ModifierProfil">
+			<button type="submit" class="btn btn-primary">Supprimer
+				mon compte</button>
 		</form>
 
 		<div>
