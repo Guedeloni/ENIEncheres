@@ -70,7 +70,7 @@
 				href="<c:url value="/inscription" />"> Créer un compte </a>
 		</div>
 		
-		<div>
+		<div class="d-flex justify-content-around text-danger f-5 fw-bold w-50 my-3">
 			<c:if test="${ requestScope.message != '' }">
 				<p>${ requestScope.message }</p>
 			</c:if>

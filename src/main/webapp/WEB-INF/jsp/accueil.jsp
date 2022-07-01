@@ -88,8 +88,8 @@
 			<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
 			<select class="form-select" id="catégories">
 				<c:if test="${ ! empty listeCategorie }">
+				<option selected>Toutes</option>
 					<c:forEach var="categorie" items="${ listeCategorie }">
-						<option selected>Toutes</option>
 						<option value="${categorie.no_categorie }">${categorie.libelle }</option>
 					</c:forEach>
 				</c:if>

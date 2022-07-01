@@ -59,9 +59,6 @@ public class UserManager {
 		}
 		return userId;
 	}
-	
-	
-	//
 
 	public void updateProfil(Utilisateur utilisateur) throws BLLException {
 		System.out.println("Passage ds. BLL");
