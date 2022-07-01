@@ -13,7 +13,6 @@ public class ArticleManager {
 
 	private ArticleManager() {
 		dao = new ArticleDAOJdbcImpl();
-
 	}
 
 	// Gestion pour avoir une classe Manager singleton

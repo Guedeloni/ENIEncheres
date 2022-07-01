@@ -8,13 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Article;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.ConnectionProvider;
 
 public class ArticleDAOJdbcImpl {
 	
-	private final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description,"
-			+ " date_debut_encheres, date_fin_encheres, prix_initial,"
-			+ " prix_vente, no_utilisateur, no_categorie FROM ARTICLES";
+	private final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description,\r\n"
+			+ "		date_debut_encheres, date_fin_encheres, prix_initial,\r\n"
+			+ "		prix_vente, no_article, pseudo\r\n"
+			+ "		FROM ARTICLES AS ART\r\n"
+			+ "		INNER JOIN UTILISATEURS AS UTIL\r\n"
+			+ "		ON (ART.no_utilisateur = UTIL.no_utilisateur)";
 	
 	
 	
@@ -27,10 +31,7 @@ public class ArticleDAOJdbcImpl {
 		
 		 try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES);
-			// optimisation des appels grace à la nature compilée du PreparedStatement
-			// (Sans optimisation , il faudrait
 			ResultSet rs = pstmt.executeQuery();
-			
 			
 			while(rs.next()){
 				Article nouvelArticle = new Article(
@@ -42,10 +43,10 @@ public class ArticleDAOJdbcImpl {
 				rs.getDate("date_fin_encheres").toLocalDate(),
 				
 				rs.getInt("prix_initial"),
-				rs.getInt("prix_vente")
+				rs.getInt("prix_vente"),
 				
-				
-				
+				rs.getInt("no_categorie"),
+				new Utilisateur(rs.getString("pseudo"))
 				
 				);
 				listeArticle.add(nouvelArticle);
