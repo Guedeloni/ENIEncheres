@@ -35,7 +35,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<!-- liens connexion -->
+			<%-- Si l' utilisateur n'est pas connecté  --%>
 			<c:if test="${empty utilisateur.pseudo }">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -48,10 +48,11 @@
 				</div>
 			</c:if>
 
+			<%-- Si l' utilisateur est connecté  --%>
 			<c:if test="${! empty utilisateur.pseudo }">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					
+
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="<c:url value="/liste-encheres" />">Enchères</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -86,14 +87,17 @@
 		<div class="input-group mb-3 w-50 p-3">
 			<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
 			<select class="form-select" id="catégories">
-				<option selected>Toutes</option>
-				<option value="1">Ameublement</option>
-				<option value="2">Vêtements</option>
-				<option value="3">Sport & Loisirs</option>
+				<c:if test="${ ! empty listeCategorie }">
+					<c:forEach var="categorie" items="${ listeCategorie }">
+						<option selected>Toutes</option>
+						<option value="${categorie.no_categorie }">${categorie.libelle }</option>
+					</c:forEach>
+				</c:if>
 			</select>
+
 		</div>
 
-		
+
 		<!-- TODO faire une fonction Javascript qui permettra de mettre en disabled les inputs selon
 qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque fois la page  -->
 
@@ -174,36 +178,28 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 
 
 
-		<div class="d-flex justify-content-around">	
-		<c:if test="${ ! empty  articlesVendus}">
-		<c:forEach var="article" items="${ articlesVendus }" >
-		
-			<div class="card" style="width: 18rem;">
-				<div class="card-body ">
-					<img class="card-img-top"
-						src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
-						alt="Card image cap">
-					<h5 class="card-title mt-2">${article.nom_article }</h5>
-					<div>Prix : 210 points</div>
-					<p class="card-text">Fin de l'enchère : ${ article.date }</p>
-					<p class="card-text">Vendeur :  ${utilisateur.pseudo }</p>
-									
-				</div>
-			</div>
-			</c:forEach>
-			</c:if>
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<img class="card-img-top"
-						src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
-						alt="Card image cap">
-					<h5 class="card-title mt-2">Rocket stove pour riz et pâtes</h5>
-					<div>Prix : 185 points</div>
-					<p class="card-text">Fin de l'enchère : 09/10/2018</p>
-					<p class="card-text">Vendeur : NineJea</p>
+		<div class="d-flex justify-content-around">
+			<c:if test="${ ! empty listeArticle }">
+				<c:forEach var="article" items="${ listeArticle }">
 
-				</div>
-			</div>
+					<div class="card" style="width: 18rem;">
+						<div class="card-body ">
+							<img class="card-img-top"
+								src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
+								alt="Card image cap">
+							<h5 class="card-title mt-2">${article.nom_article }</h5>
+							<div>Prix : ${article.prix_initial } points</div>
+							<p class="card-text">Fin de l'enchère :
+								${article.date_fin_encheres }</p>
+
+							<!-- TODO => créer un article avec un utilisateur pour puvoir récupérer le pseudo sinon null -->
+							 	<p class="card-text">Vendeur : ${article.utilisateur.pseudo }</p> 
+
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+
 		</div>
 
 	</div>

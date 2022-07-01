@@ -36,7 +36,7 @@ public class AccueilEncheres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
+		System.out.println("teste servlet");
 
 		//************************ Articles ************************ /
 
@@ -48,7 +48,7 @@ public class AccueilEncheres extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("passage");
 		request.setAttribute("listeArticle", articlesVendus);
 
 
@@ -71,7 +71,7 @@ public class AccueilEncheres extends HttpServlet {
 
 		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL_JSP);
 		rd.forward(request, response);
-
+		System.out.println("allo");
 	}
 
 	

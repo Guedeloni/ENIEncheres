@@ -16,7 +16,7 @@ public class ArticleDAOJdbcImpl {
 
 	private final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description,\r\n"
 			+ "		date_debut_encheres, date_fin_encheres, prix_initial,\r\n"
-			+ "		prix_vente, no_article, pseudo\r\n"
+			+ "		prix_vente, no_categorie, pseudo\r\n"
 			+ "		FROM ARTICLES AS ART\r\n"
 			+ "		INNER JOIN UTILISATEURS AS UTIL\r\n"
 			+ "		ON (ART.no_utilisateur = UTIL.no_utilisateur)";
