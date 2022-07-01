@@ -11,19 +11,22 @@ import fr.eni.encheres.dal.DALException;
 
 public class UserDAOJdbcImpl {
 
-	private static final String SELECT_USER_BY_PSEUDO_MDP = "SELECT no_utilisateur, pseudo, nom, prenom,"
+	private static final String SELECT_USER_BY_PSEUDO_MDP_ACTIF = "SELECT no_utilisateur, pseudo, nom, prenom,"
 			+ " email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur"
-			+ " FROM utilisateurs WHERE pseudo = ? AND mot_de_passe = ?";
+			+ " FROM utilisateurs WHERE pseudo = ? AND mot_de_passe = ? AND user_actif = 1";
 
 	private static final String INSERT_USER = "INSERT INTO utilisateurs(pseudo, nom, prenom, email,"
-			+ " telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
-			+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, user_actif)"
+			+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	private static final String SQL_UPDATE_USER= "UPDATE UTILISATEURS SET pseudo=?, nom=?,"
+	private static final String SQL_UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?,"
 			+ " prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?"
 			+ " WHERE no_utilisateur=?";
 	
-	private static final String SQL_DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
+	private static final String SQL_UPDATE_USER_TO_INACTIF = "UPDATE UTILISATEURS SET user_actif = 0"
+			+ " WHERE no_utilisateur=?";
+	
+//	private static final String SQL_DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
 
 
 	public UserDAOJdbcImpl() {
@@ -39,7 +42,7 @@ public class UserDAOJdbcImpl {
 	public Utilisateur selectUserByPseudoMdP(String pseudo, String MdP) throws DALException {
 		Utilisateur userTrouve = new Utilisateur();
 		try (Connection cnx = createConnexion();) {
-			PreparedStatement ordreSelect = cnx.prepareStatement(SELECT_USER_BY_PSEUDO_MDP);
+			PreparedStatement ordreSelect = cnx.prepareStatement(SELECT_USER_BY_PSEUDO_MDP_ACTIF);
 			ordreSelect.setString(1, pseudo);
 			ordreSelect.setString(2, MdP);
 			ResultSet ligneResultante = ordreSelect.executeQuery();
@@ -91,6 +94,7 @@ public class UserDAOJdbcImpl {
 				pstmt.setString(9, newUser.getMot_de_passe());
 				pstmt.setInt(10, newUser.getCredit());
 				pstmt.setByte(11, (byte)newUser.getAdministrateur());
+				pstmt.setInt(12, 1);
 
 				// Execution de la requete
 				pstmt.executeUpdate();
@@ -173,7 +177,7 @@ public class UserDAOJdbcImpl {
 			try {
 				cnx.setAutoCommit(false);
 
-				PreparedStatement pstmt = cnx.prepareStatement(SQL_DELETE_USER);
+				PreparedStatement pstmt = cnx.prepareStatement(SQL_UPDATE_USER_TO_INACTIF);
 				pstmt.setInt(1, no_utilisateur);
 				pstmt.executeUpdate();
 
