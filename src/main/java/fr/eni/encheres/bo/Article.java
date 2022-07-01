@@ -20,7 +20,7 @@ public class Article {
 
 	private Categorie no_categorie; // implementation de l association unidirectionnel
 
-	private Utilisateur no_utilisateur;
+	private Utilisateur utilisateur;
 
 	// constructeur
 

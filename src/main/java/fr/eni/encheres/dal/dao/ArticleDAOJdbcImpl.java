@@ -12,9 +12,12 @@ import fr.eni.encheres.dal.ConnectionProvider;
 
 public class ArticleDAOJdbcImpl {
 	
-	private final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description,"
-			+ " date_debut_encheres, date_fin_encheres, prix_initial,"
-			+ " prix_vente, no_utilisateur, no_categorie FROM ARTICLES";
+	private final String SELECT_ALL_ARTICLES ="SELECT no_article, nom_article, description,
+		    date_debut_encheres, date_fin_encheres, prix_initial,
+		    prix_vente, pseudo
+		    FROM ARTICLES AS ART
+		    INNER JOIN UTILISATEURS AS UTIL
+		    ON (ART.no_utilisateur = UTIL.no_utilisateur)";
 	
 	
 	
@@ -37,15 +40,10 @@ public class ArticleDAOJdbcImpl {
 				rs.getInt("no_article"),
 				rs.getString("nom_article"),
 				rs.getString("description"),
-				
 				rs.getDate("date_debut_encheres").toLocalDate(),
 				rs.getDate("date_fin_encheres").toLocalDate(),
-				
 				rs.getInt("prix_initial"),
 				rs.getInt("prix_vente")
-				
-				
-				
 				
 				);
 				listeArticle.add(nouvelArticle);
