@@ -62,7 +62,6 @@ public class AccueilEncheres extends HttpServlet {
 		try {
 			allCategories = catMng.getAllCategories();
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
