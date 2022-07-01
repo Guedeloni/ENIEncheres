@@ -16,8 +16,10 @@ public class ArticleDAOJdbcImpl {
 
 	private final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description,\r\n"
 			+ "		date_debut_encheres, date_fin_encheres, prix_initial,\r\n"
-			+ "		prix_vente, no_categorie, pseudo, image_article\r\n" + "		FROM ARTICLES AS ART\r\n"
-			+ "		INNER JOIN UTILISATEURS AS UTIL\r\n" + "		ON (ART.no_utilisateur = UTIL.no_utilisateur)";
+			+ "		prix_vente, no_categorie, pseudo,image_article\r\n"
+			+ "		FROM ARTICLES AS ART\r\n"
+			+ "		INNER JOIN UTILISATEURS AS UTIL\r\n"
+			+ "		ON (ART.no_utilisateur = UTIL.no_utilisateur)";
 
 	private final String INSERT_ARTICLE = "INSERT INTO ARTICLES(nom_article, description, date_debut_encheres, "
 			+ "date_fin_encheres, prix_initial, prix_vente, no_categorie, no_utilisateur ) "
@@ -63,8 +65,6 @@ public class ArticleDAOJdbcImpl {
 		if (newArticle == null) {
 			return articleId;
 		}
-
-		System.out.println(newArticle.toString());
 
 		try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
 		{

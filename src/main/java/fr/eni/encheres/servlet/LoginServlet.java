@@ -20,16 +20,17 @@ public class LoginServlet extends HttpServlet {
 	private static final String MSG_NON_INSCRIT = "Vous n' êtes pas inscrit";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * doGet()
+	 * => Deconnexion utilisateur en cours avec fin de session
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("passage ds. doGet de LoginServlet");
 		if (request.getSession(true) != null)
 			request.getSession().invalidate();
 
-		request.getRequestDispatcher("/encheres").forward(request, response);
+//		request.getRequestDispatcher("/encheres").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/encheres");
 	}
 
 	/**
@@ -63,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("oui");
 			System.out.println(utilisateur.toString());
 			request.getSession().setAttribute("utilisateur", utilisateur);
-			request.getRequestDispatcher("/encheres").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/encheres");
 			;
 		}
 

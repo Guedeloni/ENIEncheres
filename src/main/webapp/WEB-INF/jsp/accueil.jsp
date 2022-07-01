@@ -56,12 +56,12 @@
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="<c:url value="/liste-encheres" />">Enchères</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="<c:url value="${pageContext.request.contextPath}/VenteArticleServlet" />">Vendre un article</a></li>
+							href="<c:url value="/vente-article" />">Vendre un article</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="<c:url value="/profil" />">Mon
 								profil</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="<c:url value="/login" />">Déconnexion</a></li>
+							href="<c:url value="/LoginServlet" />">Déconnexion</a></li>
 
 					</ul>
 				</div>
@@ -184,8 +184,10 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 
 					<div class="card" style="width: 18rem;">
 						<div class="card-body ">
-							<img class="card-img-top"
-								src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
+						
+							  <img class="card-img-top"
+							
+								src="${article.image_article}"
 								alt="Card image cap">
 							<h5 class="card-title mt-2">${article.nom_article }</h5>
 							<div>Prix : ${article.prix_initial } points</div>

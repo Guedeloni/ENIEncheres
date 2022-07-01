@@ -19,6 +19,7 @@ public class ModifierProfil extends HttpServlet {
 	private static final String MSG_PROFIL_MODIFIE = "Votre profil a bien été modifié !";
 	private static final String MSG_COHERENCE_NEW_MDP = "Problème de confirmation du mot de passe";
 	private static final String MSG_ERREUR_MDP = "Mot de passe actuel incorrect";
+	private static final String MSG_CPT_SUPPRIME = "Votre compte a été supprimé !";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -27,34 +28,27 @@ public class ModifierProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// supprimer un utilisateur
-		//if(choixUtilisateur.equals("Supprimer mon compte")) {
-//			request.getSession().getAttribute("utilisateur");
-//			System.out.println(utilisateur.toString());
+		// Supprimer un utilisateur (et enregistrements liés en cascade)
+		System.out.println("Passage ds. le doGet de la servlet ModifierProfil => user inactif");
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		int numeroUtilisateur = utilisateur.getNo_utilisateur();
 
+		UserManager userMng = UserManager.getInstance();
 
-
-		
-		
-		System.out.println("Passage ds. la servlet");
-        Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-
-        int numeroUtilisateur = utilisateur.getNo_utilisateur();
-       System.out.println(utilisateur);
-        UserManager userMng = UserManager.getInstance();
-		
-		
-		//UserManager userMng = UserManager.getInstance();
 		try {
 			userMng.removeUser(numeroUtilisateur);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		request.getSession().removeAttribute("utilisateur");
-		String message = "Votre compte a été supprimé!";
+		
+		// Suppression de la session et envoi vers l'accueil
+		String message = MSG_CPT_SUPPRIME;
 		request.setAttribute("message", message);
-//			doGet(request, response);
-//		}
+//		request.getSession().removeAttribute("utilisateur");
+//		getServletContext().getRequestDispatcher("/modif_profil").forward(request, response);
+		if (request.getSession(true) != null)
+			request.getSession().invalidate();
+		request.getRequestDispatcher("/encheres").forward(request, response);
 
 	}
 
