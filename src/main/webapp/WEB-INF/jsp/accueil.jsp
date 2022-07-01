@@ -184,8 +184,10 @@ qu'on clique  sur Achats ou Mes Ventes car avec le Java ça rechargera à chaque
 
 					<div class="card" style="width: 18rem;">
 						<div class="card-body ">
-							<img class="card-img-top"
-								src="http://tsr-industrie.fr/wp-content/uploads/2016/04/ef3-placeholder-image.jpg"
+						
+							  <img class="card-img-top"
+							
+								src="${article.image_article}"
 								alt="Card image cap">
 							<h5 class="card-title mt-2">${article.nom_article }</h5>
 							<div>Prix : ${article.prix_initial } points</div>

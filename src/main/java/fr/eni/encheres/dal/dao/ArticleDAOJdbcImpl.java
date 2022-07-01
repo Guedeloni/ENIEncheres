@@ -16,12 +16,14 @@ public class ArticleDAOJdbcImpl {
 
 	private final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description,\r\n"
 			+ "		date_debut_encheres, date_fin_encheres, prix_initial,\r\n"
-			+ "		prix_vente, no_categorie, pseudo\r\n"
+			+ "		prix_vente, no_categorie, pseudo,image_article\r\n"
 			+ "		FROM ARTICLES AS ART\r\n"
 			+ "		INNER JOIN UTILISATEURS AS UTIL\r\n"
 			+ "		ON (ART.no_utilisateur = UTIL.no_utilisateur)";
 	
-	
+	//private final String INSERT_ARTICLE = "INSERT INTO Article (nom_article, description,"
+			//+ " date_debut_encheres, date_fin_encheres, prix_initial, prix_vente,no_categorie,"
+			//+ " no_utilisateur) VALUES(?,?,?,?,?,?,?,?)";
 	
 	
 	
@@ -46,7 +48,9 @@ public class ArticleDAOJdbcImpl {
 				rs.getInt("prix_vente"),
 				
 				rs.getInt("no_categorie"),
-				new Utilisateur(rs.getString("pseudo"))
+				new Utilisateur(rs.getString("pseudo")),
+				rs.getString("image_article")
+				
 
 				
 				);
@@ -63,6 +67,7 @@ public class ArticleDAOJdbcImpl {
 		
 		
 		
+	
 		
 		
 	}
