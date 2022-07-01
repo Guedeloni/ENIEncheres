@@ -84,7 +84,7 @@ public class InscriptionServlet extends HttpServlet {
 				// Creation de session avec utilisateur cree en attribut + redirection vers page accueil "connectee"
 				newUtilisateur.setNo_utilisateur(userId);
 				request.getSession().setAttribute("utilisateur", newUtilisateur);
-				getServletContext().getRequestDispatcher("/encheres").forward(request, response);
+				response.sendRedirect(request.getContextPath()+"/encheres");
 
 			} else {
 				// MSG ERREUR "tt. les champs sont obligatoires"

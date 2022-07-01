@@ -61,7 +61,7 @@
 							aria-current="page" href="<c:url value="/profil" />">Mon
 								profil</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="<c:url value="/login" />">Déconnexion</a></li>
+							href="<c:url value="/LoginServlet" />">Déconnexion</a></li>
 
 					</ul>
 				</div>

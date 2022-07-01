@@ -137,7 +137,7 @@
 
 		</form>
 		
-		<form method="delete" action="${pageContext.request.contextPath}/ModifierProfil">
+		<form method="get" action="${pageContext.request.contextPath}/ModifierProfil">
 			<button type="submit" class="btn btn-primary">Supprimer
 				mon compte</button>
 		</form>
