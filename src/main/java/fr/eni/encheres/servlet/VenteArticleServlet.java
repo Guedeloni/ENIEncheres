@@ -24,6 +24,8 @@ import fr.eni.encheres.bo.Categorie;
 
 public class VenteArticleServlet extends HttpServlet {
 
+	private static final String PAGE_VENTE_ARTICLE_JSP = "/WEB-INF/jsp/vente-article.jsp";
+
 	Article newArticle;
 
 	private static final long serialVersionUID = 1L;
@@ -39,8 +41,6 @@ public class VenteArticleServlet extends HttpServlet {
 
 		List<Categorie> allCategories = new ArrayList<>();
 
-		System.out.println("CATEGORIES => passage dans la servlet");
-
 		try {
 			allCategories = catMng.getAllCategories();
 		} catch (BLLException e) {
@@ -49,7 +49,7 @@ public class VenteArticleServlet extends HttpServlet {
 		}
 
 		request.setAttribute("listeCategorie", allCategories);
-		request.getRequestDispatcher("/vente-article").forward(request, response);
+		request.getRequestDispatcher(PAGE_VENTE_ARTICLE_JSP).forward(request, response);
 	}
 
 	/**
@@ -59,37 +59,29 @@ public class VenteArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String article = request.getParameter("article");
+		String article = request.getParameter("nom_article");
 		String description = request.getParameter("description");
 		LocalDate date_debut_encheres = LocalDate.parse(request.getParameter("date_debut_encheres"));
 		LocalDate date_fin_encheres = LocalDate.parse(request.getParameter("date_fin_encheres"));
-
-//		String date_debut_encheres = request.getParameter("date_debut_encheres");
-//		String date_fin_encheres = request.getParameter("date_fin_encheres");
-//	
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Date startDate = (Date) sdf.parse(date_debut_encheres);
-//		Date endDate = (Date) sdf.parse(date_debut_encheres);
-
-		Integer prix_vente = Integer.valueOf(request.getParameter("prix_vente"));
+		int prix_vente = Integer.valueOf(request.getParameter("prix_vente"));
 		Integer categorie = Integer.valueOf(request.getParameter("no_categorie"));
 		String image_article = request.getParameter("image_article");
 
-		newArticle = new Article(
-				article, 
-				description, 
-				date_debut_encheres, 
-				date_fin_encheres, 
-				prix_vente,
-				categorie, 
+		newArticle = new Article(article, description, date_debut_encheres, date_fin_encheres, prix_vente, categorie,
 				image_article);
 
 		int articleId = -1;
 
 		ArticleManager articleMng = ArticleManager.getInstance();
 		
-		if (article.isEmpty() && description.isEmpty() && date_debut_encheres != null && date_fin_encheres != null
-				&& prix_vente != null && image_article.isEmpty()) {
+		System.out.println("article :" + article);
+		System.out.println("description :" + description);
+		System.out.println("date début :" + date_debut_encheres);
+		System.out.println("date fin :" + date_fin_encheres);
+		System.out.println("prix :" + prix_vente);
+		
+		if (!article.isEmpty() && !description.isEmpty() && date_debut_encheres != null && date_fin_encheres != null
+				&& prix_vente != 0) {
 
 			try {
 				articleId = articleMng.creationArticle(newArticle);
@@ -102,7 +94,7 @@ public class VenteArticleServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/encheres").forward(request, response);
 
 		} else {
-			getServletContext().getRequestDispatcher("/vente-article").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/vente-article");
 		}
 	}
 

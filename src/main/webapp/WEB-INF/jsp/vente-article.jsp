@@ -44,18 +44,18 @@
 					<div class="form-group">
 						<label for="article">Article : </label> <input type="text"
 							class="form-control" id="article" aria-describedby="article"
-							name="article" value="${param.article}">
+							name="nom_article" value="${param.article}">
 					</div>
 
 					<div class="mb-3">
 						<label for="description" class="form-label">Description :
 						</label>
-						<textarea class="form-control" id="description" rows="3"></textarea>
+						<textarea class="form-control" id="description" rows="3" name="description"></textarea>
 					</div>
 
 					<div class="input-group mb-3 p-3">
 						<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
-						<select class="form-select" id="catégories">
+						<select class="form-select" id="catégories" name="no_categorie">
 							<c:if test="${ ! empty listeCategorie }">
 								<option selected>Toutes</option>
 								<c:forEach var="categorie" items="${ listeCategorie }">

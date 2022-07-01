@@ -30,6 +30,7 @@ public class ModifierProfil extends HttpServlet {
 
 		// Supprimer un utilisateur (et enregistrements liés en cascade)
 		System.out.println("Passage ds. le doGet de la servlet ModifierProfil => user inactif");
+		
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		int numeroUtilisateur = utilisateur.getNo_utilisateur();
 

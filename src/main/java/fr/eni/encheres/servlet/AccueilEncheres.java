@@ -36,7 +36,7 @@ public class AccueilEncheres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("teste servlet");
+		System.out.println("test servlet");
 
 		//************************ Articles ************************ /
 
@@ -71,20 +71,19 @@ public class AccueilEncheres extends HttpServlet {
 
 		RequestDispatcher rd = request.getRequestDispatcher(PAGE_ACCUEIL_JSP);
 		rd.forward(request, response);
-		System.out.println("allo");
 	}
 
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Valeur saisie dans la barre de recherche
-		searchBar = request.getParameter("searchBar").toLowerCase();
-		// Valeur de la catégorie choisi
-		categories = Integer.parseInt(request.getParameter("categories"));
-
-		request.setAttribute("categories", categories);
-		request.setAttribute("searchBar", searchBar);
+//		// Valeur saisie dans la barre de recherche
+//		searchBar = request.getParameter("searchBar").toLowerCase();
+//		// Valeur de la catégorie choisi
+//		categories = Integer.parseInt(request.getParameter("categories"));
+//
+//		request.setAttribute("categories", categories);
+//		request.setAttribute("searchBar", searchBar);
 		doGet(request, response);
 
 	}
