@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Article;
+import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.dao.ArticleDAOJdbcImpl;
 
 public class ArticleManager {
@@ -33,6 +34,19 @@ public class ArticleManager {
 		}
 		// return List<>;
 		return new ArrayList<Article>();
+
+	}
+
+	public int creationArticle(Article article) throws BLLException {
+		int articleId = 0;
+
+		try {
+			articleId = dao.insert(article);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException("Problème à la création d'un nouvel article", e);
+		}
+		return articleId;
 
 	}
 

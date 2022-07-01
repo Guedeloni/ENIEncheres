@@ -85,14 +85,23 @@
 		<url-pattern>/modif_profil</url-pattern>
 	</servlet-mapping>
 	
-	<!-- VENTE_ARTICLE -->	
+	<!-- VENTE_ARTICLE -->
 	<servlet>
-		<servlet-name>vente_article</servlet-name>
-		<jsp-file>/WEB-INF/jsp/vente_article.jsp</jsp-file>
+		<servlet-name>VenteArticleServlet</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.VenteArticleServlet</servlet-class>
+	</servlet>
+		<servlet-mapping>
+		<servlet-name>VenteArticleServlet</servlet-name>
+		<url-pattern>/VenteArticleServlet</url-pattern>
+	</servlet-mapping>
+		
+	<servlet>
+		<servlet-name>vente-article</servlet-name>
+		<jsp-file>/WEB-INF/jsp/vente-article.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>vente_article</servlet-name>
-		<url-pattern>/vente_article</url-pattern>
+		<servlet-name>vente-article</servlet-name>
+		<url-pattern>/vente-article</url-pattern>
 	</servlet-mapping>
 
 	<!-- DEFINITION DUREE DES SESSIONS DE L APPLICATION (MIN) -->

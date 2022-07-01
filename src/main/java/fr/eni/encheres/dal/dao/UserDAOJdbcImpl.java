@@ -72,7 +72,6 @@ public class UserDAOJdbcImpl {
 			return userId;
 		}
 		
-		System.out.println(newUser.toString());
 		try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
 		{
 			try {
@@ -166,9 +165,7 @@ public class UserDAOJdbcImpl {
 			}
 		
 	public void removeUser( int no_utilisateur) throws DALException {
-		
-		
-		
+
 		try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
 		{
 			try {
@@ -194,14 +191,7 @@ public class UserDAOJdbcImpl {
 		}
 
 	}
-				
-				
-		
-	
-	
 
-	
-	
 	// METHODES INTERNES
 	private Connection createConnexion() throws DALException {
 		try {

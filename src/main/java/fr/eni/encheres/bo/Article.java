@@ -18,11 +18,13 @@ public class Article {
 
 	private int prix_vente;
 
-	private int no_categorie;			// implementation de l association unidirectionnel
+	private int no_categorie; // implementation de l association unidirectionnel
 
+	private Utilisateur utilisateur; // proprietaire de l'article
 
-	private Utilisateur utilisateur;	// proprietaire de l'article
+	private int no_utilisateur; // pour ajouter un nouvel article
 
+	private String image_article;
 
 	// constructeur
 
@@ -34,12 +36,36 @@ public class Article {
 		this.utilisateur = utilisateur;
 	}
 
+	public int getNo_utilisateur() {
+		return no_utilisateur;
+	}
+
+	public String getImage_article() {
+		return image_article;
+	}
+
+	public void setImage_article(String image_article) {
+		this.image_article = image_article;
+	}
+
 	public Article() {
 
 	}
 
+	public Article(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
+			int prix_vente, int categorie, String image_article) {
+		this.nom_article = nom_article;
+		this.description = description;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_vente = prix_vente;
+		this.no_categorie = no_categorie;
+		this.image_article = image_article;
+	}
+
 	public Article(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
-			LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_categorie, Utilisateur utilisateur) {
+			LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_categorie, String image_article,
+			Utilisateur utilisateur) {
 		super();
 		this.no_article = no_article;
 		this.nom_article = nom_article;
@@ -49,6 +75,7 @@ public class Article {
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
 		this.no_categorie = no_categorie;
+		this.image_article = image_article;
 		this.utilisateur = utilisateur;
 	}
 
@@ -109,7 +136,5 @@ public class Article {
 	public void setPrix_vente(int prix_vente) {
 		this.prix_vente = prix_vente;
 	}
-
-	
 
 }

@@ -35,7 +35,7 @@
 
 	<div class="container-md">
 
-		<h2>Mon Profil</h2>
+		<h2>Modifier mon profil</h2>
 
 		<form method="post"
 			action="${pageContext.request.contextPath}/ModifierProfil">

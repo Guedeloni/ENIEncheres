@@ -56,7 +56,7 @@
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="<c:url value="/liste-encheres" />">Enchères</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="<c:url value="/vente-article" />">Vendre un article</a></li>
+							href="<c:url value="${pageContext.request.contextPath}/VenteArticleServlet" />">Vendre un article</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="<c:url value="/profil" />">Mon
 								profil</a></li>
