@@ -60,21 +60,22 @@ public class UserDAOJdbcImpl {
 
 	/**
 	 * insert(newUser)
-	 * @param newUser	Utilisateur
+	 * Renvoi l'identifiant genere
+	 * @param	Utilisateur
+	 * @return	Integer
 	 * @throws DALException
 	 */
-	public void insert(Utilisateur newUser) throws DALException {
+	public int insert(Utilisateur newUser) throws DALException {
+		int userId = -1;
 		// s'il n'y a pas de parametre, cela ne sert à rien de continuer.
 		if (newUser == null) {
-			return;
+			return userId;
 		}
 		
 		System.out.println(newUser.toString());
 		try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
 		{
 			try {
-				cnx.setAutoCommit(false);
-
 				// Preparation ajout dans la table Utilisateur
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -97,14 +98,12 @@ public class UserDAOJdbcImpl {
 				// Récupération de l'ID généré pour le Utilisateur
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {
-					newUser.setNo_utilisateur(rs.getInt(1)); // l' Utilisateur du Modèle est mis à jour
+					userId = rs.getInt(1);
 				}
 
 				rs.close();
 				pstmt.close();
 
-				// Tout s'est bien passé => transaction validée
-				cnx.commit();
 			} catch (Exception e) {
 				e.printStackTrace();
 				// Il y a eu une probleme => transaction annulée
@@ -115,6 +114,7 @@ public class UserDAOJdbcImpl {
 			e.printStackTrace();
 		}
 
+		return userId;
 	}
 	
 	/**

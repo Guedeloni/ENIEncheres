@@ -110,4 +110,9 @@
 		<session-timeout>120</session-timeout>
 	</session-config>
 	
+	<servlet>
+		<servlet-name>AccueilEncheres</servlet-name>
+		<servlet-class>fr.eni.encheres.servlet.AccueilEncheres</servlet-class>
+	</servlet>
+	
 </web-app>
