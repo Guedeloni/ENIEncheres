@@ -18,9 +18,11 @@ public class Article {
 
 	private int prix_vente;
 
-	private Categorie no_categorie; // implementation de l association unidirectionnel
+	private int no_categorie;			// implementation de l association unidirectionnel
 
-	private Utilisateur utilisateur;
+
+	private Utilisateur utilisateur;	// proprietaire de l'article
+
 
 	// constructeur
 
@@ -29,7 +31,7 @@ public class Article {
 	}
 
 	public Article(int no_article, String nom_article, String description, LocalDate date_debut_encheres,
-			LocalDate date_fin_encheres, int prix_initial, int prix_vente) {
+			LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_categorie, Utilisateur utilisateur) {
 		super();
 		this.no_article = no_article;
 		this.nom_article = nom_article;
@@ -38,6 +40,8 @@ public class Article {
 		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
+		this.no_categorie = no_categorie;
+		this.utilisateur = utilisateur;
 	}
 
 	// getter et setter

@@ -46,11 +46,9 @@ public class AccueilEncheres extends HttpServlet {
 		try {
 			articlesVendus = articleMng.afficherArticle();
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		// request.getSession().getAttribute("artilce");.
 		request.setAttribute("listeArticle", articlesVendus);
 
 
@@ -64,7 +62,7 @@ public class AccueilEncheres extends HttpServlet {
 		try {
 			allCategories = catMng.getAllCategories();
 		} catch (BLLException e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -76,6 +74,8 @@ public class AccueilEncheres extends HttpServlet {
 
 	}
 
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Valeur saisie dans la barre de recherche
