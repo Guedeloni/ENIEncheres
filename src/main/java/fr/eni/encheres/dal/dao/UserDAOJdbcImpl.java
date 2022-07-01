@@ -164,17 +164,15 @@ public class UserDAOJdbcImpl {
 				}
 
 			}
-		
+
+
 	public void removeUser( int no_utilisateur) throws DALException {
-		
-		
 		
 		try (Connection cnx = createConnexion();) // la connexion va être automatiquement fermée
 		{
 			try {
 				cnx.setAutoCommit(false);
 
-				
 				PreparedStatement pstmt = cnx.prepareStatement(SQL_DELETE_USER);
 				pstmt.setInt(1, no_utilisateur);
 				pstmt.executeUpdate();

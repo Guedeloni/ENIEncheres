@@ -133,14 +133,15 @@
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
 				</div>
 
-				<div>
-					<button type="submit" class="btn btn-primary">Supprimer
-						mon compte</button>
-				</div>
 			</div>
 
 		</form>
 		
+		<form method="delete" action="${pageContext.request.contextPath}/ModifierProfil">
+			<button type="submit" class="btn btn-primary">Supprimer
+				mon compte</button>
+		</form>
+
 		<%--  TODO : condition ternaire ou Javascript onclick pour des Modals d' alert--%>
 		<%-- class="d-flex justify-content-around ${ requestScope.message != '' ? text-success : text-danger} fs-5 fw-bold w-50 my-3"> --%>
 		
